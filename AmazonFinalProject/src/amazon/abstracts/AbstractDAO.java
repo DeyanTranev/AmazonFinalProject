@@ -6,14 +6,14 @@ import amazon.connection.DBConnection;
 
 public abstract class AbstractDAO {
 	
-	private Connection conncetion;
+	private Connection connection;
 	
 	public AbstractDAO() {
-		this.conncetion = DBConnection.getInstance().getConnection();
+		this.connection = DBConnection.getInstance().getConnection();
 	}
 	
 	public Connection getConnection() {
-		return this.conncetion;
+		return this.connection;
 	}
 
 }

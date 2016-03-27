@@ -8,25 +8,35 @@ public class Book {
 	private int id;
 	private String title;
 	private double price;
-	private LocalDate publishDate;
+	private String publishDate;
 	private String blurb;
 	private Author author;
 	private String genre;
 	
-	public Book(int id, String title, Author author, String genre, LocalDate publishDate, String blurb, double price) throws BookException {
+	public Book(String title, Author author, String genre, String publishDate, String blurb, double price) throws BookException {
 		
-		this.id = id;
 		setTitle(title);
-		setPrice(price);;
-		this.publishDate = publishDate;
+		setPrice(price);
+		setPublishDate(publishDate);
 		setBlurb(blurb);
 		setAuthor(author);
 		setGenre(genre);
 	}
-	
-	
 
 	
+	public Book(int id, String title, double price, String publishDate, String blurb, Author author, String genre) throws BookException {
+		this(title, author, genre, publishDate, blurb, price);
+		this.id = id;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Book [id=" + id + ", title=" + title + ", price=" + price + ", publishDate=" + publishDate + ", blurb="
+				+ blurb + ", author=" + author + ", genre=" + genre + "]";
+	}
+
+
 	public String getTitle() {
 		return title;
 	}
@@ -51,12 +61,12 @@ public class Book {
 			throw new BookException("Invalid price - must be greater than 0!");
 		}
 	}
-	public LocalDate getPublishDate() {
+	public String getPublishDate() {
 		return publishDate;
 	}
-	public void setPublishDate(LocalDate publishDate) throws BookException {
+	public void setPublishDate(String publishDate) throws BookException {
 		
-		if (publishDate != null) {
+		if (publishDate != null && !publishDate.trim().isEmpty()) {
 			this.publishDate = publishDate;
 		}
 		else {

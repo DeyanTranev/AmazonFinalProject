@@ -17,16 +17,18 @@ import amazon.model.Author;
 
 public class AuthorDAO extends AbstractDAO {
 	
+	private static final String ADD_AUTHOR_QUERY = "INSERT into authors values(null, ?, ?);";
+
 	public List<Author> getAllAuthors() {
 		
-		Statement statemnet;
+		Statement statement;
 		
 		List<Author> authors = new ArrayList<Author>();
 		
 		try {
-			statemnet = getConnection().createStatement();
+			statement = getConnection().createStatement();
 			
-			ResultSet rSet = statemnet.executeQuery("Select * from authors");
+			ResultSet rSet = statement.executeQuery("Select * from authors");
 			
 			while(rSet.next()) {
 				Author author = new Author(rSet.getInt(1), rSet.getString(2), rSet.getString(3));
@@ -64,6 +66,25 @@ public class AuthorDAO extends AbstractDAO {
 		}
 		return 0;
 		
+	}
+	
+	public int addAuthor(Author author) {
+		try {
+			PreparedStatement ps = getConnection().prepareStatement(ADD_AUTHOR_QUERY, 
+					PreparedStatement.RETURN_GENERATED_KEYS);
+			ps.setString(1, author.getFirstName());
+			ps.setString(2, author.getLastName());
+			
+			ps.executeUpdate();
+			
+			ResultSet generatedId = ps.getGeneratedKeys();
+			generatedId.next();
+			return generatedId.getInt(1);
+		} catch (SQLException e) {
+		
+			e.printStackTrace();
+		}
+		return 0;
 	}
 
 }

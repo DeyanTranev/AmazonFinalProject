@@ -8,10 +8,18 @@ public class Author {
 	private String lastName;
 	
 	
+	
+	
+	public Author(String firstName, String lastName) {
+	
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+
 	public Author(int id, String firstName, String lastName) throws AuthorException {
+		this(firstName, lastName);
 		setId(id);
-		setFirstName(firstName);
-		setLastName(lastName);
+	
 	}
 	
 	public int getId() {

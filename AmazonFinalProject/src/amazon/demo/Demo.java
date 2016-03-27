@@ -2,37 +2,30 @@ package amazon.demo;
 
 import java.util.List;
 
-import amazon.dao.AddressDAO;
-import amazon.dao.AuthorDAO;
+import amazon.dao.BookDAO;
+import amazon.dao.UserDAO;
+import amazon.exceptions.BookException;
 import amazon.exceptions.UserException;
 import amazon.model.Address;
 import amazon.model.Author;
-
+import amazon.model.Book;
+import amazon.model.User;
 
 public class Demo {
-
-	public static void main(String[] args) {
-		
-		
-		AddressDAO aDao = new AddressDAO();
-		
-		try {
-			aDao.addAddress(new Address("Golqmo nadolnishte", 14, "Selska Morava"));
-		} catch (UserException e) {
-			e.printStackTrace();
-		}
-		
-		
-//		AuthorDAO author = new AuthorDAO();
-//		
-//		System.out.println(author.getAuthorId("stephen king"));
-//		
-		
-//		List<Author> list = author.getAllAuthors();
-
-//		for (Author author2 : list) {
-//			System.out.println(author2);
+	public static void main(String[] args) throws BookException, UserException {
+		BookDAO bdao = new BookDAO();
+//		List<Book> books = bdao.getAllBooks();
+//		for (Book b: books) {
+//			System.out.println(b);
 //		}
+		
+//		Book book = new Book("Of mice and men", new Author("John", "Steinbeck"), "Drama", "1999-03-15", "Qko cherna komediq, brat", 10.25);
+//		Book book2 = new Book("Reaper Man", new Author("Terry", "Pratchett"),"Fantasy","2013-07-30","Tova e hubava kniga, mnogo qko.",9.62);
+//		bdao.addBook(book2);
+		UserDAO udao = new UserDAO();
+		User user = new User("Pesho", "Petrov", "ppetrov@gmail.com", "1234", new Address("Latinka", 15, "Yambol"));
+		udao.addUser(user);
+		
 	}
 
 }
