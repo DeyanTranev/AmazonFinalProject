@@ -23,6 +23,8 @@ public class Book {
 		setAuthor(author);
 		setGenre(genre);
 	}
+	
+	
 
 	
 	public String getTitle() {

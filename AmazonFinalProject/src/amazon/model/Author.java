@@ -7,6 +7,15 @@ public class Author {
 	private String firstName;
 	private String lastName;
 	
+	
+	
+	
+	public Author(int id, String firstName, String lastName) throws AuthorException {
+		setId(id);
+		setFirstName(firstName);
+		setLastName(lastName);
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -37,6 +46,13 @@ public class Author {
 		}
 	}
 	
-	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("id: " + getId() + "\n");
+		sb.append("first name: " + getFirstName() + "\n");
+		sb.append("last name: " + getLastName() + "\n");
+		return sb.toString();
+	}
 	
 }
