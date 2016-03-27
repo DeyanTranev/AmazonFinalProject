@@ -31,14 +31,16 @@ public class Address {
 	public String getStreet() {
 		return street;
 	}
+	
 	public void setStreet(String street) throws UserException {
 		if(street != null && !street.trim().isEmpty()) {
-		this.street = street;
+			this.street = street;
 		}
 		else {
 			throw new UserException("Invalid street name!");
 		}
 	}
+	
 	public int getNumber() {
 		return number;
 	}
