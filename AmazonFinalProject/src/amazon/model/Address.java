@@ -7,23 +7,32 @@ public class Address {
 	private int id;
 	private String street;
 	private int number;
-	private City city;
+	private String city;
 	
 	public Address() {
 	
 	}
 	
+
+	public Address(int id, String street, int number, String city) throws UserException {
+
+		setId(id);
+		setStreet(street);
+		setNumber(number);
+		setCity(city);
+	}
+
 	public int getId() {
 		return id;
 	}
-	public void setId(int id) {
+	private void setId(int id) {
 		this.id = id;
 	}
 	public String getStreet() {
 		return street;
 	}
 	public void setStreet(String street) throws UserException {
-		if(street != null && street.equals("")) {
+		if(street != null && !street.trim().isEmpty()) {
 		this.street = street;
 		}
 		else {
@@ -42,11 +51,11 @@ public class Address {
 			
 		}
 	}
-	public City getCity() {
+	public String getCity() {
 		return city;
 	}
-	public void setCity(City city) throws UserException {
-		if(city != null) {
+	public void setCity(String city) throws UserException {
+		if(city != null && !city.trim().isEmpty()) {
 		this.city = city;
 		}
 		else {
@@ -54,5 +63,13 @@ public class Address {
 		}
 	}
 	
-	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("id: " + getId() + "\n");
+		sb.append("streer: " + getStreet() + "\n");
+		sb.append("number: " + getNumber() + "\n");
+		sb.append("city: " + getCity() + "\n");
+		return sb.toString();
+	}
 }
