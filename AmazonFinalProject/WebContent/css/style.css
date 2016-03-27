@@ -1,0 +1,41 @@
+@font-face {
+    font-family: GoodDog;
+    src: url(GoodDog.otf);
+}
+@font-face {
+    font-family: Seasrn;
+    src: url(SEASRN__.ttf);
+}
+body{
+	font-family: Seasrn;
+	background-color: silver;
+}
+form{
+	height: 130px;
+}
+input{
+	border-radius: 3px;
+}
+p{
+	font:bold 25px GoodDog;
+}
+a:hover{
+	color: red;
+}
+.button{
+	border:1px;
+	margin: 10px 10px 10px 2px;
+    background: green;
+    border-radius: 4px;
+    line-height: 28px;
+    padding: 0 10px;
+    color: #FFFFFF;
+    display: block;
+    float: left;
+    cursor: pointer;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.15);
+}
+.button:hover{
+	background: #94FC94;
+	color: #666666;
+}

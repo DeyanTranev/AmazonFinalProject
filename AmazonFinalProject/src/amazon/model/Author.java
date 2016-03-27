@@ -8,8 +8,6 @@ public class Author {
 	private String lastName;
 	
 	
-	
-	
 	public Author(int id, String firstName, String lastName) throws AuthorException {
 		setId(id);
 		setFirstName(firstName);

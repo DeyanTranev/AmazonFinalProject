@@ -9,17 +9,18 @@ public class Address {
 	private int number;
 	private String city;
 	
-	public Address() {
-	
-	}
 	
 
-	public Address(int id, String street, int number, String city) throws UserException {
-
-		setId(id);
+	public Address(String street, int number, String city) throws UserException {
 		setStreet(street);
 		setNumber(number);
 		setCity(city);
+	}
+
+	public Address(int id, String street, int number, String city) throws UserException {
+		this(street, number, city);
+		setId(id);
+		
 	}
 
 	public int getId() {
