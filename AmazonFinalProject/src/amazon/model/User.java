@@ -11,18 +11,18 @@ public class User {
 	private String password;
 	private Address address;
 
-	public User() {
 
-	}
-	
-	
-
-	public User(String firstName, String lastName, String eMail, String password, Address address) {
-		super();
+	public User(String firstName, String lastName, String eMail, String password, String repPassword, Address address) throws UserException {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.eMail = eMail;
-		this.password = password;
+		
+		if(password.equals(repPassword)) {
+			this.password = password;
+		}
+		else {
+			throw new UserException("Invalid Mail or Password!");
+		}
 		this.address = address;
 	}
 
@@ -83,6 +83,7 @@ public class User {
 		}
 		throw new UserException("Invalid password!");
 	}
+
 
 	public Address getAddress() {
 		return address;
