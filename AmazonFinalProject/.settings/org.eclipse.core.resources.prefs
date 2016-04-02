@@ -1,3 +1,2 @@
 eclipse.preferences.version=1
-encoding//src/amazon/dao/AuthorDAO.java=UTF-8
-encoding//src/amazon/model/Author.java=UTF-8
+encoding//src/amazon/dao/BookDAO.java=UTF-8

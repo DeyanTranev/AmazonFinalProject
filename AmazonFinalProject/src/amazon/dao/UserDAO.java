@@ -1,6 +1,7 @@
 package amazon.dao;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import amazon.abstracts.AbstractDAO;
@@ -31,6 +32,27 @@ public class UserDAO extends AbstractDAO {
 	public void removeUserById(int id) {
 		
 		
+		
+	}
+	
+	public boolean login(String username, String password) {
+		try {
+			PreparedStatement ps = getConnection().prepareStatement("SELECT * from users WHERE e_mail = ? AND password = ?;");
+			ps.setString(1, username);
+			ps.setString(2, password);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				return true;
+			}
+			else {
+				return false;
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 		
 	}
 }

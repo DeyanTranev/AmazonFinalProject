@@ -4,6 +4,8 @@ import amazon.exceptions.UserException;
 
 public class User {
 
+	
+
 	private int id;
 	private String firstName;
 	private String lastName;
@@ -96,5 +98,10 @@ public class User {
 			throw new UserException("Invalid Address!");
 		}
 	}
-
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", eMail=" + eMail
+				+ ", password=" + password + ", address=" + address + "]";
+	}
+	
 }

@@ -12,8 +12,9 @@ public class Book {
 	private String blurb;
 	private Author author;
 	private String genre;
+	private String photo;
 	
-	public Book(String title, Author author, String genre, String publishDate, String blurb, double price) throws BookException {
+	public Book(String title, Author author, String genre, String publishDate, String blurb, double price, String photo) throws BookException {
 		
 		setTitle(title);
 		setPrice(price);
@@ -21,11 +22,12 @@ public class Book {
 		setBlurb(blurb);
 		setAuthor(author);
 		setGenre(genre);
+		setPhoto(photo);
 	}
 
 	
-	public Book(int id, String title, double price, String publishDate, String blurb, Author author, String genre) throws BookException {
-		this(title, author, genre, publishDate, blurb, price);
+	public Book(int id, String title, double price, String publishDate, String blurb, Author author, String genre, String photo) throws BookException {
+		this(title, author, genre, publishDate, blurb, price, photo);
 		this.id = id;
 	}
 
@@ -109,6 +111,21 @@ public class Book {
 	}
 	public int getId() {
 		return id;
+	}
+
+
+	public String getPhoto() {
+		return photo;
+	}
+
+
+	public void setPhoto(String photo) throws BookException {
+		if (photo != null && !photo.trim().isEmpty() ) {
+			this.photo = photo;
+		}
+		else {
+			throw new BookException("Invalid photo path!");
+		}
 	}
 	
 }

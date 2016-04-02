@@ -27,20 +27,18 @@ public class LoginServ extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 		
-		
-		
-		String name = request.getParameter("username");
+		String name = request.getParameter("email");
 		String pass = request.getParameter("pass");
 		
-		boolean flag = false;
+		//boolean flag = false;
 		
 		UserDAO uDAO = new UserDAO();
 		
 		
-		if(flag) {
+		if(uDAO.login(name, pass)) {
 			HttpSession session = request.getSession();
 			session.setAttribute("name", name);
-			response.sendRedirect("./Welcome");
+			response.sendRedirect("./index.jsp");
 		}
 		else {
 			response.sendRedirect("./failLogin.html");

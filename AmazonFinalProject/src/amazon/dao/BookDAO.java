@@ -14,7 +14,7 @@ import amazon.model.Book;
 
 public class BookDAO extends AbstractDAO {
 
-	private static final String INSERT_NEW_BOOK_QUERY = "INSERT INTO books values(null, ?, ?, ?, ?, ?, ?);";
+	private static final String INSERT_NEW_BOOK_QUERY = "INSERT INTO books values(null, ?, ?, ?, ?, ?, ?, ?);";
 
 	public List<Book> getAllBooks() {
 
@@ -27,7 +27,7 @@ public class BookDAO extends AbstractDAO {
 			ResultSet rs = statement.executeQuery("SELECT * FROM books");
 			while (rs.next()) {
 				Book book = new Book(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getString(4), rs.getString(5),
-						new Author("Petyr", "Nedelchev"), "Drama");
+						new Author("Petyr", "Nedelchev"), "Drama", rs.getString(8));
 				result.add(book);
 			}
 		} catch (SQLException | BookException e) {
