@@ -60,8 +60,28 @@ public class UserDAO extends AbstractDAO {
 		return salt;
 	}
 	
+	public String getFirstNameByEmail(String email) throws UserException  {
+		String uname = "";
+		try {
+			PreparedStatement ps = getConnection().prepareStatement("SELECT first_name from users WHERE e_mail = ?");
+			System.out.println("email:"+email);
+			ps.setString(1, email);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				uname=rs.getString("first_name");
+			}
+			System.out.println(uname);
+			return uname;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw new UserException("Username not found", e);
+			
+		}
+		
+	}
 	
-	public boolean login(String userEmail, String password) {
+	public boolean login(String userEmail, String password) throws UserException {
 		try {
 			
 		String salt = getSaltFromUser(userEmail);
@@ -76,7 +96,7 @@ public class UserDAO extends AbstractDAO {
 			}
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			throw new UserException("Incorrect e-mail or password", e);
 		}
 		return false;
 		

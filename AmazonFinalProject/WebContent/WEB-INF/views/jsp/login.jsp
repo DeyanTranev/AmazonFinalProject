@@ -117,6 +117,7 @@ page language="java" contentType="text/html; charset=UTF-8"
     </div> <!-- End main menu area -->
     
                 <form:form commandName="loginForm" method="POST" class="form">
+            
 		<!-- Handle errors -->
 	<!--  	<form:errors path="*" cssClass="errorblock" element="div"/> -->
 		
@@ -126,14 +127,20 @@ page language="java" contentType="text/html; charset=UTF-8"
 		<form:errors path="email" cssClass="error" />
 		<br>
 		
+		
 	 	<label for="textinput2">Enter pass:</label><br>
-		<form:input placeholder="Password" path="pass" cssErrorClass="error" /><br>
+		<form:input placeholder="Password" type="password" path="pass" cssErrorClass="error" /><br>
 		<form:errors path="pass" cssClass="error" />
 		 <br>
 		<button type="submit" value="Login" class="button"> login </button><br>
 
 		<p>Don't have a registration?
     <a href="register"> register here</a></p>
+   
+    	
+    	
+    
+    	 
 	</form:form> 
     
      <div class="slider-area">
