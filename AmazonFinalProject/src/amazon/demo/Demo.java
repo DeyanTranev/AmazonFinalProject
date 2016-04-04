@@ -23,9 +23,10 @@ public class Demo {
 //		Book book2 = new Book("Reaper Man", new Author("Terry", "Pratchett"),"Fantasy","2013-07-30","Tova e hubava kniga, mnogo qko.",9.62);
 //		bdao.addBook(book2);
 		UserDAO udao = new UserDAO();
-		User user = new User("Pesho", "Petrov", "ppetrov@gmail.com", "1234", "1234", new Address("Latinka", 15, "Yambol"));
-		udao.addUser(user);
+//		User user = new User("Pesho", "Petrov", "ppetrov@gmail.com", "1234", "1234", new Address("Latinka", 15, "Yambol"));
+//		udao.addUser(user);
 		
+//		System.out.println(udao.getSaltFromUser("test16@t.com"));
 	}
 
 }

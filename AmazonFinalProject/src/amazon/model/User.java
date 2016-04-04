@@ -1,5 +1,7 @@
 package amazon.model;
 
+
+
 import amazon.exceptions.UserException;
 
 public class User {
@@ -9,21 +11,29 @@ public class User {
 	private String lastName;
 	private String eMail;
 	private String password;
+	private String rePassword;
 	private Address address;
-
-
-	public User(String firstName, String lastName, String eMail, String password, String repPassword, Address address) throws UserException {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.eMail = eMail;
+	private String salt;
+	
+	public User() {
 		
-		if(password.equals(repPassword)) {
-			this.password = password;
+	}
+
+
+	public User(String firstName, String lastName, String eMail, String password, String rePassword,
+			Address address, String salt) throws UserException {
+		setFirstName(firstName);
+		setLastName(lastName);
+		seteMail(eMail);
+		
+		if(password.equals(rePassword)) {
+			setPassword(password);
 		}
 		else {
 			throw new UserException("Invalid Mail or Password!");
 		}
-		this.address = address;
+		setAddress(address);
+		setSalt(salt);
 	}
 
 
@@ -39,9 +49,10 @@ public class User {
 	public String getFirstName() {
 		return firstName;
 	}
-
+	
+	
 	public void setFirstName(String firstName) throws UserException {
-		if (firstName != null && !firstName.equals("")) {
+		if (firstName != null && !firstName.trim().isEmpty()) {
 			this.firstName = firstName;
 		} 
 		else {
@@ -54,7 +65,7 @@ public class User {
 	}
 
 	public void setLastName(String lastName) throws UserException {
-		if (firstName !=null && !firstName.trim().isEmpty()) {
+		if (lastName != null && !lastName.trim().isEmpty()) {
 			this.lastName = lastName;
 		}
 		else {
@@ -67,10 +78,13 @@ public class User {
 	}
 
 	public void seteMail(String eMail) throws UserException {
-		if (eMail != null && !eMail.equals("")) {
+		if (eMail != null && !eMail.trim().isEmpty()) {
 			this.eMail = eMail;
 		}
-		throw new UserException("Invalid e-mail address!");
+		else {
+			throw new UserException("Invalid e-mail address!");
+		}
+		
 	}
 
 	public String getPassword() {
@@ -78,10 +92,28 @@ public class User {
 	}
 
 	public void setPassword(String password) throws UserException {
-		if (password != null && !password.equals("")) {
+		if (password != null && !password.trim().isEmpty()) {
 			this.password = password;
 		}
-		throw new UserException("Invalid password!");
+		else {
+			throw new UserException("Invalid password!");
+		}
+		
+	}
+
+
+	public String getRePassword() {
+		return rePassword;
+	}
+
+
+	public void setRePassword(String rePassword) throws UserException {
+		if (rePassword != null && !rePassword.trim().isEmpty()) {
+			this.rePassword = rePassword;
+		}
+		else {
+			throw new UserException("Invalid password!");
+		}
 	}
 
 
@@ -90,11 +122,35 @@ public class User {
 	}
 
 	public void setAddress(Address address) throws UserException {
-		if (address != null) {
+		if(address != null) {
 			this.address = address;
-		} else {
-			throw new UserException("Invalid Address!");
+		}
+		else {
+			throw new UserException("Address can't be null!");
 		}
 	}
+	
+	
 
+	public String getSalt() {
+		return salt;
+	}
+
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
+
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("first name: " + getFirstName() + "\n");
+		sb.append("last name: " + getLastName() + "\n");
+		sb.append("e-mail: " + geteMail() + "\n");
+		sb.append("address: " + getAddress() + "\n");
+		return sb.toString();
+	}
+
+	
+	
 }

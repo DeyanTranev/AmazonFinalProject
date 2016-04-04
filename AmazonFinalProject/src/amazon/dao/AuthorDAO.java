@@ -9,9 +9,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-import amazon.abstracts.AbstractDAO;
 import amazon.exceptions.AuthorException;
 import amazon.model.Author;
 

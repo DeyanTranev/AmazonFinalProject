@@ -9,7 +9,9 @@ public class Address {
 	private int number;
 	private String city;
 	
-	
+	public Address() {
+		
+	}
 
 	public Address(String street, int number, String city) throws UserException {
 		setStreet(street);

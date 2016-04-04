@@ -10,10 +10,10 @@ public class Author {
 	
 	
 	
-	public Author(String firstName, String lastName) {
+	public Author(String firstName, String lastName) throws AuthorException {
 	
-		this.firstName = firstName;
-		this.lastName = lastName;
+		setFirstName(firstName);
+		setLastName(lastName);
 	}
 
 	public Author(int id, String firstName, String lastName) throws AuthorException {

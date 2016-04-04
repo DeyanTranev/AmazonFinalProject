@@ -4,7 +4,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import amazon.abstracts.AbstractDAO;
 import amazon.model.Address;
 
 public class AddressDAO extends AbstractDAO {

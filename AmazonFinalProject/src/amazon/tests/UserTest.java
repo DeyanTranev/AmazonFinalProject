@@ -17,8 +17,8 @@ public class UserTest {
 		UserDAO uDAO = new UserDAO();
 		Address address;
 		try {
-			address = new Address("Test3", 567, "Plovdiv");
-			uDAO.addUser(new User("Iest3", "Test3", "Test3@gmail.com", "123456", "123456", address));
+			address = new Address("Test40", 567, "Topolovo");
+			uDAO.addUser(new User("Iest40", "test40", "Test40@gmail.com", "1234560", "1234560", address, "40"));
 		} catch (UserException e) {
 			e.printStackTrace();
 		}

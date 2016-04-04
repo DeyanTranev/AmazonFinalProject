@@ -7,7 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import amazon.abstracts.AbstractDAO;
+import amazon.exceptions.AuthorException;
 import amazon.exceptions.BookException;
 import amazon.model.Author;
 import amazon.model.Book;
@@ -18,7 +18,7 @@ public class BookDAO extends AbstractDAO {
 
 	public List<Book> getAllBooks() {
 
-		AuthorDAO adao = new AuthorDAO();
+		
 		Statement statement;
 		int id = 0;
 		List<Book> result = new ArrayList<Book>();
@@ -30,8 +30,7 @@ public class BookDAO extends AbstractDAO {
 						new Author("Petyr", "Nedelchev"), "Drama");
 				result.add(book);
 			}
-		} catch (SQLException | BookException e) {
-			// TODO Auto-generated catch block
+		} catch (SQLException | BookException | AuthorException e) {
 			e.printStackTrace();
 		}
 		return result;
@@ -61,8 +60,7 @@ public class BookDAO extends AbstractDAO {
 			ps.setInt(6, 2);
 
 			ps.executeUpdate();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		} catch (SQLException | AuthorException e) {
 			e.printStackTrace();
 		}
 	}

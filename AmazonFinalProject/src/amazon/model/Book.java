@@ -29,11 +29,12 @@ public class Book {
 		this.id = id;
 	}
 
-
-	@Override
-	public String toString() {
-		return "Book [id=" + id + ", title=" + title + ", price=" + price + ", publishDate=" + publishDate + ", blurb="
-				+ blurb + ", author=" + author + ", genre=" + genre + "]";
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
 	}
 
 
@@ -107,8 +108,11 @@ public class Book {
 			throw new BookException("Invalid genre!");
 		}
 	}
-	public int getId() {
-		return id;
-	}
+
 	
+	@Override
+	public String toString() {
+		return "Book [id=" + id + ", title=" + title + ", price=" + price + ", publishDate=" + publishDate + ", blurb="
+				+ blurb + ", author=" + author + ", genre=" + genre + "]";
+	}
 }
