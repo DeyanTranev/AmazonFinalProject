@@ -17,8 +17,15 @@ public class TestBookDAO {
 		
 		List<Book> list = bDao.getAllBooks();
 		System.out.println(list.get(1));
+
+	}
+
+	@Test
+	public void testGetGenreById() {
+		BookDAO bDao = new BookDAO();
+		System.out.println(bDao.getGenreById(3));
 		
 		
 	}
-
+	
 }

@@ -27,7 +27,7 @@ public class BookDAO extends AbstractDAO {
 			ResultSet rs = statement.executeQuery(GET_ALL_BOOKS);
 			while (rs.next()) {
 				Book book = new Book(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getString(4), rs.getString(5),
-						adao.getAuthorById(rs.getInt(6)), "Drama", rs.getString(7));
+						adao.getAuthorById(rs.getInt(6)), getGenreById(rs.getInt(7)), rs.getString(8));
 				result.add(book);
 			}
 		} catch (SQLException | BookException | AuthorException e) {
@@ -66,5 +66,27 @@ public class BookDAO extends AbstractDAO {
 		} catch (SQLException | AuthorException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public String getGenreById(int id) {
+			
+		String genre = "";
+		
+			try {
+				PreparedStatement ps = getConnection().prepareStatement("SELECT genre_name FROM genres WHERE genre_id = ?");
+				
+			ps.setInt(1, id);
+			
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			genre = rs.getString(1);
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		
+			return genre;
+		
+		
 	}
 }
