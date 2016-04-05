@@ -41,11 +41,11 @@
                 <div class="col-md-8">
                     <div class="user-menu">
                         <ul>
-                            <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
-                            <li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
+                        <!--    <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
+                       <li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li> -->
                             <li><a href="cart"><i class="fa fa-user"></i> My Cart</a></li>
                             <li><a href="checkout"><i class="fa fa-user"></i> Checkout</a></li>
-                            <li><a href="#"><i class="fa fa-user"></i> Login</a></li>
+                            <li><a href="login"><i class="fa fa-user"></i> Login</a></li>
                         </ul>
                     </div>
                 </div>
@@ -82,13 +82,35 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="logo">
-                        <h1><a href="index">e<span>Electronics</span></a></h1>
+                        <h1><a href="index">e<span>Books</span></a></h1>
                     </div>
                 </div>
                 
                 <div class="col-sm-6">
+                    <div id="search-drop-menu">
+                            <label id="label">
+                                <select>
+                                    <option selected>Comedy</option>
+                                    <option>Drama</option>
+                                    <option>Epic</option>
+                                    <option>Erotic</option>
+                                    <option>Nonsense</option>
+                                    <option>Lyric</option>
+                                    <option>Mythopoeia</option>
+                                    <option>Romance</option>
+                                    <option>Satire</option>
+                                    <option>Tragedy</option>
+                                    <option>Tragicomedy</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div id="tfheader">
+                            <form id="tfnewsearch" method="get" action="http://www.google.com">
+                                    <input type="text" class="tftextinput" name="q" size="21" maxlength="120"><input type="submit" value="search" class="tfbutton">
+                            </form>
+                        </div>
                     <div class="shopping-item">
-                        <a href="cart">Cart - <span class="cart-amunt">$800</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+                        <a href="cart">Cart - <span class="cart-amunt">$0</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
                     </div>
                 </div>
             </div>

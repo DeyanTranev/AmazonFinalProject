@@ -33,7 +33,7 @@ public class AuthorDAO extends AbstractDAO {
 			}
 			return authors;
 			
-		} catch (SQLException e) {
+		} catch (SQLException | AuthorException e) {
 			e.printStackTrace();
 		}
 		

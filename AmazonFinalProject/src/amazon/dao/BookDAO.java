@@ -14,28 +14,30 @@ import amazon.model.Book;
 
 public class BookDAO extends AbstractDAO {
 
-	private static final String INSERT_NEW_BOOK_QUERY = "INSERT INTO books values(null, ?, ?, ?, ?, ?, ?);";
+	private static final String GET_ALL_BOOKS = "SELECT * FROM books";
+	private static final String INSERT_NEW_BOOK_QUERY = "INSERT INTO books values(null, ?, ?, ?, ?, ?, ?, ?);";
 
 	public List<Book> getAllBooks() {
-
-		
+		AuthorDAO adao = new AuthorDAO();
 		Statement statement;
-		int id = 0;
+		
 		List<Book> result = new ArrayList<Book>();
 		try {
 			statement = getConnection().createStatement();
-			ResultSet rs = statement.executeQuery("SELECT * FROM books");
+			ResultSet rs = statement.executeQuery(GET_ALL_BOOKS);
 			while (rs.next()) {
 				Book book = new Book(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getString(4), rs.getString(5),
-						new Author("Petyr", "Nedelchev"), "Drama");
+						adao.getAuthorById(rs.getInt(6)), "Drama", rs.getString(7));
 				result.add(book);
 			}
-		} catch (SQLException | BookException e) {
+		} catch (SQLException | BookException | AuthorException e) {
 			e.printStackTrace();
 		}
 		return result;
 	}
 
+	
+	
 	public void addBook(Book book) {
 		AuthorDAO adao = new AuthorDAO();
 		
@@ -58,9 +60,10 @@ public class BookDAO extends AbstractDAO {
 				ps.setInt(5, newAuthorId);
 			}
 			ps.setInt(6, 2);
+			ps.setString(7, book.getImg());
 
 			ps.executeUpdate();
-		} catch (SQLException  e) {
+		} catch (SQLException | AuthorException e) {
 			e.printStackTrace();
 		}
 	}

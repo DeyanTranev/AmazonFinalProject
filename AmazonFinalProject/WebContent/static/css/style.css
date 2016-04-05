@@ -590,7 +590,7 @@ width: 10px;
     margin-bottom: 50px;
 }
 input[type="text"], input[type="password"], input[type="email"], textarea {
-    border: 1px solid aquamarine;
+    border: 1px solid #ddd;
     padding: 10px;
 }
 input[type="submit"], button[type=submit] {
@@ -1009,7 +1009,7 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button{background
 .form{
   margin-left:50px;
   font: 20px bold ;
-  color:#808080;
+  color:grey;
 }
 .form input{
   border-radius: 5px;
@@ -1017,4 +1017,72 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button{background
 }
 .form p {
   color: FireBrick;
+}
+#tfheader{
+  float: left;
+  margin-top: 43px;
+}
+#search-drop-menu{
+  float: left;
+  margin-top: 50px;
+  font-size: 20px;
+  margin-right: 10px;
+}
+select {
+    padding:3px;
+    margin: 0;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    background: #f8f8f8;
+    color:#888;
+    border:none;
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+}
+
+/* Targetting Webkit browsers only. FF will show the dropdown arrow with so much padding. */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    select {padding-right:26px}
+}
+
+#label {position:relative}
+#label:after {
+    content:'<>';
+    font:11px "Consolas", monospace;
+    color:#aaa;
+    -webkit-transform:rotate(90deg);
+    -moz-transform:rotate(90deg);
+    -ms-transform:rotate(90deg);
+    transform:rotate(90deg);
+    right:8px; top:2px;
+    padding:0 0 2px;
+    border-bottom:1px solid #ddd;
+    position:absolute;
+    pointer-events:none;
+}
+#label:before {
+    content:'';
+    right:6px; 
+    top:0px;
+    width:20px; 
+    height:20px;
+    background:#f8f8f8;
+    position:absolute;
+    pointer-events:none;
+    display:block;
+}
+#login-form{
+  
+  padding-top:10px;
+  paffing-left:100px;
+  padding-bottom:10px;
+  background-color: aquamarine;
 }

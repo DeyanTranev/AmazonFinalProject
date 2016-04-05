@@ -14,10 +14,10 @@ import amazon.model.User;
 public class Demo {
 	public static void main(String[] args) throws BookException, UserException {
 		BookDAO bdao = new BookDAO();
-//		List<Book> books = bdao.getAllBooks();
-//		for (Book b: books) {
-//			System.out.println(b);
-//		}
+		List<Book> books = bdao.getAllBooks();
+		for (Book b: books) {
+			System.out.println(b);
+		}
 		
 //		Book book = new Book("Of mice and men", new Author("John", "Steinbeck"), "Drama", "1999-03-15", "Qko cherna komediq, brat", 10.25);
 //		Book book2 = new Book("Reaper Man", new Author("Terry", "Pratchett"),"Fantasy","2013-07-30","Tova e hubava kniga, mnogo qko.",9.62);

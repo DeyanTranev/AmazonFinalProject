@@ -12,8 +12,10 @@ public class Book {
 	private String blurb;
 	private Author author;
 	private String genre;
+	private String img;
 	
-	public Book(String title, Author author, String genre, String publishDate, String blurb, double price) throws BookException {
+	public Book(String title, Author author, String genre, String publishDate, 
+			String blurb, double price, String img) throws BookException {
 		
 		setTitle(title);
 		setPrice(price);
@@ -21,11 +23,13 @@ public class Book {
 		setBlurb(blurb);
 		setAuthor(author);
 		setGenre(genre);
+		setImg(img);
 	}
 
 	
-	public Book(int id, String title, double price, String publishDate, String blurb, Author author, String genre) throws BookException {
-		this(title, author, genre, publishDate, blurb, price);
+	public Book(int id, String title, double price, String publishDate, String blurb,
+			Author author, String genre, String img) throws BookException {
+		this(title, author, genre, publishDate, blurb, price, img);
 		this.id = id;
 	}
 
@@ -108,8 +112,20 @@ public class Book {
 			throw new BookException("Invalid genre!");
 		}
 	}
-
 	
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) throws BookException {
+		if(img != null && !img.trim().isEmpty()) {
+		this.img = img;
+		}
+		else {
+			throw new BookException("Input valid image name!");
+		}
+	}
+
+
 	@Override
 	public String toString() {
 		return "Book [id=" + id + ", title=" + title + ", price=" + price + ", publishDate=" + publishDate + ", blurb="
