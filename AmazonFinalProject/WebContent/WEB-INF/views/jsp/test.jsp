@@ -9,6 +9,5 @@
 <body>
 	<p> Email: ${loginForm.email}</p>
 	<p> Pass: ${loginForm.pass}</p>
-	<p style="color:red"> <%=request.getSession().getAttribute("error") %></p>
 </body>
 </html>

@@ -10,21 +10,16 @@ public class Author {
 	
 	
 	
-	public Author(String firstName, String lastName)  {
+	public Author(String firstName, String lastName) throws AuthorException {
 	
-		try {
-			setFirstName(firstName);
-			setLastName(lastName);
-		} catch (AuthorException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		setFirstName(firstName);
+		setLastName(lastName);
 	}
 
-	public Author(int id, String firstName, String lastName) {
+	public Author(int id, String firstName, String lastName) throws AuthorException {
 		this(firstName, lastName);
 		setId(id);
+	
 	}
 	
 	public int getId() {

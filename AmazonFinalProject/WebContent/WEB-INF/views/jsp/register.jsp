@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="css/owl.carousel.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
-<meta charset="UTF-8">
+
 <title>Registration</title>
 </head>
 <body background="img/slide-2.jpg" style="background-size:cover">
@@ -38,7 +38,7 @@
 		street:<br> 
 		<form:input type="text" placeholder="Street" path="adress.street"/> <br>
 		number: <br> 
-		<form:input type="text" placeholder="Phone-number" path="adress.number"/> <br>
+		<form:input type="text" placeholder="number" path="adress.number"/> <br>
 		city:<br> 
 		<form:input type="text" placeholder="City" path="adress.city"/> <br>
 		<button type="submit" value="Login" class="button"> Register</button>

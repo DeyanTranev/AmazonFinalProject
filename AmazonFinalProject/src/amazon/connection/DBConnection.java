@@ -13,7 +13,7 @@ public class DBConnection {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/amazonfinalproject", "root", "root");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/amazonfinalproject", "root", "1234");
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
