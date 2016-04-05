@@ -30,7 +30,7 @@ public class BookDAO extends AbstractDAO {
 						new Author("Petyr", "Nedelchev"), "Drama");
 				result.add(book);
 			}
-		} catch (SQLException | BookException | AuthorException e) {
+		} catch (SQLException | BookException e) {
 			e.printStackTrace();
 		}
 		return result;
@@ -60,7 +60,7 @@ public class BookDAO extends AbstractDAO {
 			ps.setInt(6, 2);
 
 			ps.executeUpdate();
-		} catch (SQLException | AuthorException e) {
+		} catch (SQLException  e) {
 			e.printStackTrace();
 		}
 	}

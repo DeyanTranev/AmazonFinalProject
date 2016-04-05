@@ -35,8 +35,6 @@ public class AuthorDAO extends AbstractDAO {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} catch (AuthorException e) {
-			e.printStackTrace();
 		}
 		
 		return null;
@@ -63,6 +61,22 @@ public class AuthorDAO extends AbstractDAO {
 		}
 		return 0;
 		
+	}
+	
+	public Author getAuthorById(int id) throws AuthorException {
+		Author author=null;
+		try {
+			PreparedStatement ps = getConnection().prepareStatement("SELECT * FROM authors WHERE author_id = ?");
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				author = new Author(rs.getString(2), rs.getString(3));
+			}
+		} catch (SQLException ex) {
+			// TODO Auto-generated catch block
+			throw new AuthorException("Author with id "+ id +" not found!", ex);
+		}
+		return author;
 	}
 	
 	public int addAuthor(Author author) {

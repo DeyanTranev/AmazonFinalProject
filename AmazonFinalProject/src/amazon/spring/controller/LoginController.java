@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import amazon.dao.UserDAO;
 import amazon.exceptions.UserException;
+import amazon.model.Login;
 
 @Controller
 @SessionAttributes("login")
