@@ -1081,11 +1081,8 @@ select {
 }
 #login-form{
   
-  margin-left: 0;
-  padding: 10px 10px 10px 10px;
+  padding-top:10px;
+  paffing-left:100px;
+  padding-bottom:10px;
   background-color: aquamarine;
-}
-.productImages{
-  width: 160px;
-  height: 290px;
 }

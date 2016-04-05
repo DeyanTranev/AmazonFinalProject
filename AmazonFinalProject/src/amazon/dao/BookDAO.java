@@ -5,7 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import amazon.exceptions.AuthorException;
 import amazon.exceptions.BookException;
@@ -63,7 +65,7 @@ public class BookDAO extends AbstractDAO {
 			ps.setString(7, book.getImg());
 
 			ps.executeUpdate();
-		} catch (SQLException | AuthorException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
@@ -86,7 +88,26 @@ public class BookDAO extends AbstractDAO {
 			}
 		
 			return genre;
+	}
+	
+	public List<Book> bookBy(String selection, String input) {
+		List<Book> books = new ArrayList<>();
+		AuthorDAO adao = new AuthorDAO();
+		String titleQuery = "SELECT * FROM books WHERE book_title LIKE ?";
+		try {
+			PreparedStatement ps = getConnection().prepareStatement(titleQuery);
+			ps.setString(1, "%"+input+"%");
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Book book = new Book(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getString(4), rs.getString(5),
+						adao.getAuthorById(rs.getInt(6)), getGenreById(rs.getInt(7)), rs.getString(8));
+				books.add(book);
+			}
+		} catch (SQLException | BookException | AuthorException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		
+		return books;
 	}
 }

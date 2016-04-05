@@ -1,14 +1,14 @@
 <%@
 page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="ISO-8859-1"%>
-    <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+	pageEncoding="ISO-8859-1"%>
+	<%@
+taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <meta charset="utf-8">
+ 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>eBooks</title>
     
@@ -42,41 +42,40 @@ page language="java" contentType="text/html; charset=UTF-8"
             <div class="row">
                 <div class="col-md-8">
                     <div class="user-menu">
-                       <ul>
-                            
+                        <ul>
+                         <!-- <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
+                            <li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>  -->   
                             <li><a href="cart"><i class="fa fa-user"></i> My Cart</a></li>
-                             <%if (((String)request.getSession().getAttribute("name"))==null) { %>
-                            <li><a href="login"><i class="fa fa-user"></i><span id="loginName"> Login</span></a></li>
+                            <li><a href="index"><i class="fa fa-user"></i> Checkout</a></li>
+                          	<%if (((String)request.getSession().getAttribute("name"))==null) { %>
+                            <li><a href="login"><i class="fa fa-user"></i> Login</a></li>
                             <%} else {%>
-                           <li><a href="login"><i class="fa fa-user"></i> <%=request.getSession().getAttribute("name") %></a></li>
-                           <li><a href="logout"><i class="fa fa-user"></i> Logout </a></li>
-                           <%} %>
-                            
+                          	<li><a href="login"><i class="fa fa-user"></i> <%=request.getSession().getAttribute("name") %></a></li>
+                          	<%} %>
                         </ul>
-                        
                     </div>
                 </div>
                 
                 <div class="col-md-4">
                     <div class="header-right">
                         <ul class="list-unstyled list-inline">
-                            <!-- <li class="dropdown dropdown-small">
+                            <li class="dropdown dropdown-small">
                                 <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">currency :</span><span class="value">USD </span><b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#">USD</a></li>
                                     <li><a href="#">INR</a></li>
                                     <li><a href="#">GBP</a></li>
                                 </ul>
-                            </li> -->
+                            </li>
 
-                          <!--   <li class="dropdown dropdown-small">
+                            <li class="dropdown dropdown-small">
                                 <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">language :</span><span class="value">English </span><b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#">English</a></li>
                                     <li><a href="#">French</a></li>
                                     <li><a href="#">German</a></li>
                                 </ul>
-                            </li> -->
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -93,24 +92,29 @@ page language="java" contentType="text/html; charset=UTF-8"
                     </div>
                 </div>
                 <div class="col-sm-6">
-                 <form:form id="tfnewsearch" method="post" action="search" commandName="searchForm">
                     <div id="search-drop-menu">
-                        <label >
-                            <form:select path="selectMenu">
-                                <form:option value="title" selected="selected">Title</form:option>
-                                <form:option value="author">Author</form:option>
-                                <form:option value="genre">Genre</form:option>
-                                 
-                            </form:select>
+                        <label id="label">
+                            <select>
+                                <option selected>Comedy</option>
+                                <option>Drama</option>
+                                <option>Epic</option>
+                                <option>Erotic</option>
+                                <option>Nonsense</option>
+                                <option>Lyric</option>
+                                <option>Mythopoeia</option>
+                                <option>Romance</option>
+                                <option>Satire</option>
+                                <option>Tragedy</option>
+                                <option>Tragicomedy</option>
+                            </select>
                         </label>
                     </div>
                     <div id="tfheader">
-                        
-                                <form:input type="text" class="tftextinput" path="userInput" name="q" size="21" maxlength="120"/>
+                        <form id="tfnewsearch" method="get" action="http://www.google.com">
+                                <input type="text" class="tftextinput" name="q" size="21" maxlength="120">
                                 <input type="submit" value="search" class="tfbutton">
-                        
+                        </form>
                     </div>
-                    </form:form>
                     <div class="shopping-item">
                         <a href="cart">Cart - <span class="cart-amunt">$0</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
                     </div>
@@ -136,7 +140,10 @@ page language="java" contentType="text/html; charset=UTF-8"
                         <li><a href="shop">Shop page</a></li>
                         <li><a href="single-product">Single product</a></li>
                         <li><a href="cart">Cart</a></li>
-                       <!-- <li><a href="checkout">Checkout</a></li> --> 
+                        <li><a href="checkout">Checkout</a></li>
+                        <!-- <li><a href="#">Category</a></li>
+                        <li><a href="#">Others</a></li>
+                        <li><a href="#">Contact</a></li> -->
                     </ul>
                 </div>  
             </div>
@@ -229,7 +236,7 @@ page language="java" contentType="text/html; charset=UTF-8"
         </div>        
     </div> <!-- End slider area -->
     
-<!--     <div class="promo-area">
+    <div class="promo-area">
         <div class="zigzag-bottom"></div>
         <div class="container">
             <div class="row">
@@ -259,7 +266,7 @@ page language="java" contentType="text/html; charset=UTF-8"
                 </div>
             </div>
         </div>
-    </div> End promo area -->
+    </div> <!-- End promo area -->
     
     <div class="maincontent-area">
         <div class="zigzag-bottom"></div>
@@ -270,28 +277,98 @@ page language="java" contentType="text/html; charset=UTF-8"
                         <h2 class="section-title">Latest Products</h2>
                         <div class="product-carousel">
 
-                            <c:forEach items="${books}"   var="book" >
-  
-                                <div class='single-product'>
-                                    <div class='product-f-image'>
-                                        <img class="productImages" src='img/${book.img}.jpg' alt='${book.img}'>
-                                        <div class='product-hover'>
-                                            <a href='#' class='add-to-cart-link'> 
-                                                <i class='fa fa-shopping-cart'>  </i> Add to cart
-                                            </a>
-                                            <a href='single-product' class='view-details-link'>
-                                                <i class='fa fa-link'></i> See details
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <h2><a href='single-product.html'> ${book.title}</a></h2>
-                                    <div class='product-carousel-price'>
-                                        <ins>${book.price}<br></ins> ${book.genre}
+                            <!-- <div class="single-product">
+                                <div class="product-f-image">
+                                    <img src="img/product-1.jpg" alt="">
+                                    <div class="product-hover">
+                                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                                        <a href="single-product.html" class="view-details-link"><i class="fa fa-link"></i> See details</a>
                                     </div>
                                 </div>
+                                
+                                <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
+                                
+                                <div class="product-carousel-price">
+                                    <ins>$700.00</ins> <del>$800.00</del>
+                                </div> 
+                            </div>
 
-                            </c:forEach>
-                       
+
+
+                            <div class="single-product">
+                                <div class="product-f-image">
+                                    <img src="img/product-2.jpg" alt="">
+                                    <div class="product-hover">
+                                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                                        <a href="single-product" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                    </div>
+                                </div>
+                                
+                                <h2><a href="single-product">Apple new mac book 2015 March :P</a></h2>
+                                <div class="product-carousel-price">
+                                    <ins>$899.00</ins> <del>$999.00</del>
+                                </div> 
+                            </div>
+                            <div class="single-product">
+                                <div class="product-f-image">
+                                    <img src="img/product-3.jpg" alt="">
+                                    <div class="product-hover">
+                                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                                        <a href="single-product" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                    </div>
+                                </div>
+                                
+                                <h2><a href="single-product">Apple new i phone 6</a></h2>
+
+                                <div class="product-carousel-price">
+                                    <ins>$400.00</ins> <del>$425.00</del>
+                                </div>                                 
+                            </div>
+                            <div class="single-product">
+                                <div class="product-f-image">
+                                    <img src="img/product-4.jpg" alt="">
+                                    <div class="product-hover">
+                                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                                        <a href="single-product" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                    </div>
+                                </div>
+                                
+                                <h2><a href="single-product">Sony playstation microsoft</a></h2>
+
+                                <div class="product-carousel-price">
+                                    <ins>$200.00</ins> <del>$225.00</del>
+                                </div>                            
+                            </div>
+                            <div class="single-product">
+                                <div class="product-f-image">
+                                    <img src="img/product-5.jpg" alt="">
+                                    <div class="product-hover">
+                                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                                        <a href="single-product" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                    </div>
+                                </div>
+                                
+                                <h2><a href="single-product">Sony Smart Air Condtion</a></h2>
+
+                                <div class="product-carousel-price">
+                                    <ins>$1200.00</ins> <del>$1355.00</del>
+                                </div>                                 
+                            </div>
+                            <div class="single-product">
+                                <div class="product-f-image">
+                                    <img src="img/product-6.jpg" alt="">
+                                    <div class="product-hover">
+                                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                                        <a href="single-product" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                    </div>
+                                </div>
+                                
+                                <h2><a href="single-product">Samsung gallaxy note 4</a></h2>
+
+                                <div class="product-carousel-price">
+                                    <ins>$400.00</ins>
+                                </div>                            
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -299,7 +376,7 @@ page language="java" contentType="text/html; charset=UTF-8"
         </div>
     </div> <!-- End main content area -->
     
-   <!--  <div class="brands-area">
+    <div class="brands-area">
         <div class="zigzag-bottom"></div>
         <div class="container">
             <div class="row">
@@ -320,7 +397,7 @@ page language="java" contentType="text/html; charset=UTF-8"
                 </div>
             </div>
         </div>
-    </div> End brands area -->
+    </div> <!-- End brands area -->
     
     <div class="product-widget-area">
         <div class="zigzag-bottom"></div>

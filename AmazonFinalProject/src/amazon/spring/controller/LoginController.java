@@ -30,20 +30,21 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String loginPost(@ModelAttribute("loginForm") Login login, HttpServletRequest request) throws UserException  {
+	public String loginPost(@ModelAttribute("loginForm") Login login, Model model, HttpServletRequest request) throws UserException  {
 		UserDAO userDAO = new UserDAO();
 		
 	
 				if (userDAO.login(login.getEmail(), login.getPass())) {
 					HttpSession session = request.getSession();
-					session.setMaxInactiveInterval(60);
+					//session.setMaxInactiveInterval(60);
 					String firstName = userDAO.getFirstNameByEmail(login.getEmail());
 					session.setAttribute("name", firstName);
 					return "redirect:index";
 				} 
 				else {
-					HttpSession session = request.getSession();	
-					session.setAttribute("error", "Invalid e-mail or password!");
+					//HttpSession session = request.getSession();	
+					//session.setAttribute("error", "Invalid e-mail or password!");
+					model.addAttribute("error", "Invalid e-mail or password!");
 					return "login";
 
 				}

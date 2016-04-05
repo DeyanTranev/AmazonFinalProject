@@ -45,7 +45,13 @@ page language="java" contentType="text/html; charset=UTF-8"
                          <!--    <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>  -->
                             <li><a href="cart"><i class="fa fa-user"></i> My Cart</a></li>
                             <li><a href="checkout"><i class="fa fa-user"></i> Checkout</a></li>
-                            <li><a href="login"><i class="fa fa-user"></i> Login</a></li>
+                             <%if (((String)request.getSession().getAttribute("name"))==null) { %>
+                            <li><a href="login"><i class="fa fa-user"></i><span id="loginName"> Login</span></a></li>
+                            <%} else {%>
+                           <li><a href="logout"><i class="fa fa-user"></i> <%=request.getSession().getAttribute("name") %></a></li>
+                           	
+                           <%} %>
+                          <!--   <li><a href="login"><i class="fa fa-user"></i> Login</a></li> -->
                         </ul>
                     </div>
                 </div>
