@@ -21,7 +21,7 @@ public class TestController {
 		
 			model.addAttribute("books", books);
 
-		return "test";
+		return "index";
 	}
 
 

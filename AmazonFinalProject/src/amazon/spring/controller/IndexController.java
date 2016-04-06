@@ -36,11 +36,11 @@ public class IndexController {
 	@RequestMapping(value="/search", method = RequestMethod.POST) 
 	public String searchCtrl(@ModelAttribute("searchForm") Search search, Model model) {
 		BookDAO bDao = new BookDAO();
+		System.out.println(search.getSelectMenu() + " ---------------");
 		List<Book> books = bDao.bookBy(search.getSelectMenu(), search.getUserInput());
 		model.addAttribute("books", books);
 		return "index";
 	}
-	
 
 	
 }

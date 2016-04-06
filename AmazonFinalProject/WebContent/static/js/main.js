@@ -1,6 +1,6 @@
 jQuery(document).ready(function($){
     //creat products
-/*    for (var i = 1; i < 7; i++) {
+   /* for (var i = 1; i < 7; i++) {
         var imgName = "product-"+i;
         var productName = i;
         var oldPrice = i+1;
@@ -8,7 +8,16 @@ jQuery(document).ready(function($){
         $('.product-carousel').append("<div class='single-product'><div class='product-f-image'><img src='img/"+imgName+".jpg' alt=''><div class='product-hover'><a href='#' class='add-to-cart-link'><i class='fa fa-shopping-cart'></i> Add to cart</a><a href='single-product.html' class='view-details-link'><i class='fa fa-link'></i> See details</a></div></div><h2><a href='single-product.html'>"+productName+"</a></h2><div class='product-carousel-price'><ins>$"+newPrice+"</ins> <del>$"+oldPrice+"</del></div></div>");
 
     };*/
-   
+    if(localStorage.searchActive){
+        $("#slider-area-hide").hide(1000);
+        localStorage.removeItem("searchActive");
+    }
+
+    $("#searchButton").click(function(){
+        localStorage.searchActive = true;
+    });
+
+
     // jQuery sticky Menu
     
 	$(".mainmenu-area").sticky({topSpacing:0});
@@ -92,6 +101,7 @@ jQuery(document).ready(function($){
     $('body').scrollspy({ 
         target: '.navbar-collapse',
         offset: 95
-    })      
+    })   
+
 });
 

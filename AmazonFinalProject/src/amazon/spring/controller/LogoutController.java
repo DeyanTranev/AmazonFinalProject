@@ -12,7 +12,7 @@ public class LogoutController {
 	@RequestMapping(value="/logout", method = RequestMethod.GET)
 	public String logoutCtrl(HttpServletRequest request) {
 		request.getSession().invalidate();
-		return "index";
+		return "redirect:index";
 	}
 		
 }

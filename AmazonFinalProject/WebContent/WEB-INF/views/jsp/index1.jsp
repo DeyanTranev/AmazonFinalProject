@@ -47,11 +47,7 @@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
                             <li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>  -->   
                             <li><a href="cart"><i class="fa fa-user"></i> My Cart</a></li>
                             <li><a href="index"><i class="fa fa-user"></i> Checkout</a></li>
-                          	<%if (((String)request.getSession().getAttribute("name"))==null) { %>
                             <li><a href="login"><i class="fa fa-user"></i> Login</a></li>
-                            <%} else {%>
-                          	<li><a href="login"><i class="fa fa-user"></i> <%=request.getSession().getAttribute("name") %></a></li>
-                          	<%} %>
                         </ul>
                     </div>
                 </div>

@@ -41,7 +41,10 @@
 		<form:input type="text" placeholder="number" path="adress.number"/> <br>
 		city:<br> 
 		<form:input type="text" placeholder="City" path="adress.city"/> <br>
+		<div>
 		<button type="submit" value="Login" class="button"> Register</button>
+		<a href="index" >back</a>
+		</div>
 	</form:form>
 
 

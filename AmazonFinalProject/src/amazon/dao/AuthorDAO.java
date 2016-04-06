@@ -33,7 +33,7 @@ public class AuthorDAO extends AbstractDAO {
 			}
 			return authors;
 			
-		} catch (SQLException e) {
+		} catch (SQLException | AuthorException e) {
 			e.printStackTrace();
 		}
 		
@@ -73,7 +73,6 @@ public class AuthorDAO extends AbstractDAO {
 				author = new Author(rs.getString(2), rs.getString(3));
 			}
 		} catch (SQLException ex) {
-			// TODO Auto-generated catch block
 			throw new AuthorException("Author with id "+ id +" not found!", ex);
 		}
 		return author;

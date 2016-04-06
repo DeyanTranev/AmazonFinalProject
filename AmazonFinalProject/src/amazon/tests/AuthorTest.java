@@ -12,9 +12,9 @@ public class AuthorTest {
 	@Test
 	public void testGetAuthorById() throws AuthorException {
 		AuthorDAO authDAO = new AuthorDAO();
-		assertNotNull(authDAO.getAuthorById(3));
 		
-	
+		assertNotNull(authDAO.getAuthorById(1));
+		
 	}
 
 }

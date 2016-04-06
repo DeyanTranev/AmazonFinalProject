@@ -43,11 +43,15 @@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
                 <div class="col-md-8">
                     <div class="user-menu">
                         <ul>
-                         <!--  <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
-                            <li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>  -->   
+                            
                             <li><a href="cart"><i class="fa fa-user"></i> My Cart</a></li>
-                            <li><a href="checkout"><i class="fa fa-user"></i> Checkout</a></li>
-                            <li><a href="login"><i class="fa fa-user"></i> Login</a></li>
+                             <%if (((String)request.getSession().getAttribute("name"))==null) { %>
+                            <li><a href="login"><i class="fa fa-user"></i><span id="loginName"> Login</span></a></li>
+                            <%} else {%>
+                           <li><a href="login"><i class="fa fa-user"></i> <%=request.getSession().getAttribute("name") %></a></li>
+                           <li><a href="logout"><i class="fa fa-user"></i> Logout </a></li>
+                           <%} %>
+                            
                         </ul>
                     </div>
                 </div>
@@ -55,7 +59,7 @@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
                 <div class="col-md-4">
                     <div class="header-right">
                         <ul class="list-unstyled list-inline">
-                            <li class="dropdown dropdown-small">
+                            <!-- <li class="dropdown dropdown-small">
                                 <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">currency :</span><span class="value">USD </span><b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#">USD</a></li>
@@ -71,7 +75,7 @@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
                                     <li><a href="#">French</a></li>
                                     <li><a href="#">German</a></li>
                                 </ul>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                 </div>
@@ -83,37 +87,13 @@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
-                    <div class="logo">
+                 <div class="logo">
                         <h1><a href="index">e<span>Books</span></a></h1>
                     </div>
                 </div>
-                
                 <div class="col-sm-6">
-                    <div id="search-drop-menu">
-                        <label id="label">
-                            <select>
-                                <option selected>Comedy</option>
-                                <option>Drama</option>
-                                <option>Epic</option>
-                                <option>Erotic</option>
-                                <option>Nonsense</option>
-                                <option>Lyric</option>
-                                <option>Mythopoeia</option>
-                                <option>Romance</option>
-                                <option>Satire</option>
-                                <option>Tragedy</option>
-                                <option>Tragicomedy</option>
-                            </select>
-                        </label>
-                    </div>
-                    <div id="tfheader">
-                        <form id="tfnewsearch" method="get" action="http://www.google.com">
-                                <input type="text" class="tftextinput" name="q" size="21" maxlength="120"><input type="submit" value="search" class="tfbutton">
-                        </form>
-                    </div>
-                    
                     <div class="shopping-item">
-                        <a href="cart">Cart - <span class="cart-amunt">$800</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+                        <a href="cart">Cart - <span class="cart-amunt">$0</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
                     </div>
                 </div>
             </div>
@@ -137,7 +117,7 @@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
                         <li><a href="shop">Shop page</a></li>
                         <li class="active"><a href="single-product">Single product</a></li>
                         <li><a href="cart">Cart</a></li>
-                        <li><a href="checkout">Checkout</a></li>
+                     <!--    <li><a href="checkout">Checkout</a></li> -->
                         <!-- <li><a href="#">Category</a></li>
                         <li><a href="#">Others</a></li>
                         <li><a href="#">Contact</a></li> -->
@@ -400,7 +380,7 @@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
     </div>
 
 
-    <div class="footer-top-area">
+<!--     <div class="footer-top-area">
         <div class="zigzag-bottom"></div>
         <div class="container">
             <div class="row">
@@ -456,7 +436,7 @@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <div class="footer-bottom-area">
         <div class="container">
             <div class="row">
