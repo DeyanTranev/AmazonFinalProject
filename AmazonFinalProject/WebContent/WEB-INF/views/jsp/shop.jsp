@@ -114,7 +114,6 @@ page language="java" contentType="text/html; charset=UTF-8"
                     <ul class="nav navbar-nav">
                         <li><a href="index">Home</a></li>
                         <li class="active"><a href="shop">Shop</a></li>
-                        <li><a href="single-product">Single product</a></li>
                         <li><a href="cart">Cart</a></li>
                         <!-- <li><a href="checkout">Checkout</a></li> -->
                         <!-- <li><a href="#">Category</a></li>
@@ -154,7 +153,7 @@ page language="java" contentType="text/html; charset=UTF-8"
                         </div>
                         <h2><a href="">${book.title}</a></h2>
                         <div class="product-carousel-price">
-                            <ins><p>price:</p> ${book.price}</ins> 
+                            <ins><p>price: ${book.price}</p></ins> 
                         </div>  
                         
                         <div class="product-option-shop">

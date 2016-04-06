@@ -134,7 +134,6 @@ page language="java" contentType="text/html; charset=UTF-8"
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="index">Home</a></li>
                         <li><a href="shop">Shop page</a></li>
-                        <li><a href="single-product">Single product</a></li>
                         <li><a href="cart">Cart</a></li>
                        <!-- <li><a href="checkout">Checkout</a></li> --> 
                     </ul>
@@ -238,12 +237,12 @@ page language="java" contentType="text/html; charset=UTF-8"
                                             <a href='#' class='add-to-cart-link'> 
                                                 <i class='fa fa-shopping-cart'>  </i> Add to cart
                                             </a>
-                                            <a href='single-product' class='view-details-link'>
+                                            <a href='single-product/${book.id}' class='view-details-link'>
                                                 <i class='fa fa-link'></i> See details
                                             </a>
                                         </div>
                                     </div>
-                                    <h2><a href='single-product.html'> ${book.title}</a></h2>
+                                    <h2><a href='single-product'> ${book.title}</a></h2>
                                     <div class='product-carousel-price'>
                                         <ins>${book.price}<br></ins> ${book.genre}
                                     </div>

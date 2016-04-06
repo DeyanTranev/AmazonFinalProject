@@ -138,9 +138,8 @@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
                     <ul class="nav navbar-nav">
                         <li><a href="index">Home</a></li>
                         <li><a href="shop">Shop page</a></li>
-                        <li><a href="single-product">Single product</a></li>
                         <li><a href="cart">Cart</a></li>
-                        <li class="active"><a href="checkout">Checkout</a></li>
+     <!--                    <li class="active"><a href="checkout">Checkout</a></li> -->
                         <!-- <li><a href="#">Category</a></li>
                         <li><a href="#">Others</a></li>
                         <li><a href="#">Contact</a></li> -->

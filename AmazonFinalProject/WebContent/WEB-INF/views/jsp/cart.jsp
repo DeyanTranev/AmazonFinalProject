@@ -114,7 +114,6 @@
                     <ul class="nav navbar-nav">
                         <li><a href="index">Home</a></li>
                         <li><a href="shop">Shop page</a></li>
-                        <li><a href="single-product">Single product</a></li>
                         <li class="active"><a href="cart">Cart</a></li>
                        <!--  <li><a href="checkout">Checkout</a></li> -->
                         <!-- <li><a href="#">Category</a></li>
@@ -161,27 +160,7 @@
                                 <ins>$700.00</ins> <del>$800.00</del>
                             </div>                             
                         </div>
-                        <div class="thubmnail-recent">
-                            <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                            <h2><a href="single-product">Sony Smart TV - 2015</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>$700.00</ins> <del>$800.00</del>
-                            </div>                             
-                        </div>
-                        <div class="thubmnail-recent">
-                            <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                            <h2><a href="single-product">Sony Smart TV - 2015</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>$700.00</ins> <del>$800.00</del>
-                            </div>                             
-                        </div>
-                        <div class="thubmnail-recent">
-                            <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                            <h2><a href="single-product">Sony Smart TV - 2015</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>$700.00</ins> <del>$800.00</del>
-                            </div>                             
-                        </div>
+    
                     </div>
                     
                     <div class="single-sidebar">
