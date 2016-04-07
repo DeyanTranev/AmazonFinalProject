@@ -3,6 +3,7 @@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page session="false" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -44,7 +45,7 @@ page language="java" contentType="text/html; charset=UTF-8"
                     <div class="user-menu">
                        <ul>
                             
-                            <li><a href="cart"><i class="fa fa-user"></i> My Cart</a></li>
+                            <li><a href="addtocart"><i class="fa fa-user"></i> My Cart</a></li>
                              <%if (((String)request.getSession().getAttribute("name"))==null) { %>
                             <li><a href="login"><i class="fa fa-user"></i><span id="loginName"> Login</span></a></li>
                             <%} else {%>
@@ -112,7 +113,7 @@ page language="java" contentType="text/html; charset=UTF-8"
                     </div>
                     </form:form>
                     <div class="shopping-item">
-                        <a href="cart">Cart - <span class="cart-amunt">$0</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+                        <a href="addtocart">Cart - <span class="cart-amunt">$0</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
                     </div>
                 </div>
             </div>
@@ -134,7 +135,7 @@ page language="java" contentType="text/html; charset=UTF-8"
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="index">Home</a></li>
                         <li><a href="shop">Shop page</a></li>
-                        <li><a href="cart">Cart</a></li>
+                        <li><a href="addtocart/0">Cart</a></li>
                        <!-- <li><a href="checkout">Checkout</a></li> --> 
                     </ul>
                 </div>  
@@ -232,9 +233,9 @@ page language="java" contentType="text/html; charset=UTF-8"
   
                                 <div class='single-product'>
                                     <div class='product-f-image'>
-                                        <img class="productImages" src='img/${book.img}.jpg' alt='${book.img}'>
+                                        <img class="productImages" src='img/${book.img}.jpg' alt='${book.blurb}'>
                                         <div class='product-hover'>
-                                            <a href='#' class='add-to-cart-link'> 
+                                            <a href='addtocart/${book.id}' class='add-to-cart-link', method="post"> 
                                                 <i class='fa fa-shopping-cart'>  </i> Add to cart
                                             </a>
                                             <a href='single-product/${book.id}' class='view-details-link'>
@@ -242,7 +243,7 @@ page language="java" contentType="text/html; charset=UTF-8"
                                             </a>
                                         </div>
                                     </div>
-                                    <h2><a href='single-product'> ${book.title}</a></h2>
+                                    <h2><a href='single-product.html'> ${book.title}</a></h2>
                                     <div class='product-carousel-price'>
                                         <ins>${book.price}<br></ins> ${book.genre}
                                     </div>
@@ -289,7 +290,7 @@ page language="java" contentType="text/html; charset=UTF-8"
                         <h2 class="product-wid-title">Top Sellers</h2>
                         <a href="" class="wid-view-more">View All</a>
                        
-                   <c:forEach items="${books}" begin="0" end="3" varStatus="loop"   var="book" >
+                   <c:forEach items="${books}" begin="0" end="3" varStatus="loop" var="book" >
                         
                         <div class="single-wid-product">
                             <a href="single-product"><img src="img/${book.img}.jpg" alt="${book.img}" class="product-thumb"></a>

@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 	<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -22,9 +23,9 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/owl.carousel.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="../css/owl.carousel.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -91,9 +92,7 @@
                 </div>
                 <div class="col-sm-6">
                 
-                    <div class="shopping-item">
-                        <a href="cart">Cart - <span class="cart-amunt">$0</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
-                    </div>
+                   
                 </div>
             </div>
         </div>
@@ -150,20 +149,26 @@
                             <input type="submit" value="Search">
                         </form>
                     </div>
-                    
-                    <div class="single-sidebar">
-                        <h2 class="sidebar-title">Products</h2>
-                        <div class="thubmnail-recent">
-                            <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                            <h2><a href="single-product">Sony Smart TV - 2015</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>$700.00</ins> <del>$800.00</del>
-                            </div>                             
-                        </div>
-    
-                    </div>
-                    
-                    <div class="single-sidebar">
+
+					<div class='product-carousel'>
+						<c:forEach items="${cart}" var="book">
+							<div class="single-sidebar">
+								<h2 class="sidebar-title">Products</h2>
+								<div class="thubmnail-recent">
+									<img src="../img/${book.img}.jpg" class="recent-thumb" alt="">
+									<h2>
+										<a href="single-product">${book.title}</a>
+									</h2>
+									<div class="product-sidebar-price">
+										<ins>${book.price}</ins>
+									</div>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+
+
+					<div class="single-sidebar">
                         <h2 class="sidebar-title">Recent Posts</h2>
                         <ul>
                             <li><a href="#">Sony Smart TV - 2015</a></li>

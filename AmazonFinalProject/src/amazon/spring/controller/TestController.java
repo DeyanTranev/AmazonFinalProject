@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -22,17 +21,8 @@ public class TestController {
 		
 			model.addAttribute("books", books);
 
-		return "test";
+		return "index";
 	}
 
-	@RequestMapping(value = "/test2/{book_id}", method = RequestMethod.GET)
-	public String testCtrlGetBook(Model model, @PathVariable("book_id") int id) {
-		BookDAO bDao = new BookDAO();
 
-		Book book = bDao.getBookById(id);
-
-			model.addAttribute("book", book);
-
-		return "test2";
-	}
 }

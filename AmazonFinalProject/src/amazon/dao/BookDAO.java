@@ -38,28 +38,6 @@ public class BookDAO extends AbstractDAO {
 		}
 		return result;
 	}
-	
-	public Book getBookById(int id) {
-		AuthorDAO adao = new AuthorDAO();
-		Book book = null;
-		
-		try {
-			PreparedStatement ps = getConnection().prepareStatement("SELECT * FROM books WHERE book_id = ?");
-			
-			ps.setInt(1, id);
-			ResultSet rs = ps.executeQuery();
-			rs.next();
-			
-			book = new Book(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getString(4), rs.getString(5),
-					adao.getAuthorById(rs.getInt(6)), getGenreById(rs.getInt(7)), rs.getString(8));
-			
-			
-		} catch (SQLException | BookException | AuthorException e) {
-			e.printStackTrace();
-		}
-		
-		return book;
-	}
 
 	public void addBook(Book book) {
 		AuthorDAO adao = new AuthorDAO();
@@ -132,7 +110,27 @@ public class BookDAO extends AbstractDAO {
 		return books;
 	}
 	
-	public String  getSearchParam(String selection) {
+	public Book getBookById(int id) {
+		Book book = null;
+		AuthorDAO adao = new AuthorDAO();
+		try {
+			PreparedStatement ps = getConnection().prepareStatement("SELECT * FROM books WHERE book_id=?");
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			book = new Book(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getString(4), rs.getString(5),
+					adao.getAuthorById(rs.getInt(6)), getGenreById(rs.getInt(7)), rs.getString(8));
+			
+		} catch (SQLException | BookException | AuthorException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return book;
+		
+	}
+	
+	public String getSearchParam(String selection) {
 		
 		String select = "";
 		

@@ -11,7 +11,7 @@ page language="java" contentType="text/html; charset=UTF-8"
 </head>
 <body>
 
-   <c:forEach items="${books}"   var="book" >  
+  <c:forEach items="${books}"   var="book" >
   
   
   <div class='single-product'>
@@ -19,13 +19,18 @@ page language="java" contentType="text/html; charset=UTF-8"
   <img src='img/${book.img}.jpg' alt=''>
   <div class='product-hover'>
   <a href='#' class='add-to-cart-link'>  <i class='fa fa-shopping-cart'>  </i> Add to cart</a>
-  <a href='test2/${book.id}' class='view-details-link'><i class='fa fa-link'></i> See details</a>
-  </div></div><h2><a href='../test/${book.id}'> ${book.title} </a></h2>
-  <div class='product-carousel-price'><ins>${book.price}<br></ins> ${book.genre}</div></div> 
-  
-  
-   </c:forEach>  
-	
-	
+  <a href='single-product.html' class='view-details-link'><i class='fa fa-link'></i> See details</a>
+  </div></div><h2><a href='single-product.html'> ${book.title}</a></h2>
+  <div class='product-carousel-price'><ins>${book.price}<br></ins> ${book.genre}</div></div>
+
+<!-- 	<p> id: ${book.id}</p>
+	<p> title: ${book.title}</p>
+	<p> price: ${book.price}</p>
+	<p> publishing date: ${book.publishDate}</p>
+	<p> blurb: ${book.blurb}</p>
+	<p> author names: ${book.author.firstName}</p>
+	<p> genre: ${book.genre}</p>
+	<p> img: ${book.img}</p> -->
+	</c:forEach>
 </body>
 </html>

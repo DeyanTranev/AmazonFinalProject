@@ -43,7 +43,7 @@ page language="java" contentType="text/html; charset=UTF-8"
                     <div class="user-menu">
                          <ul>
                             
-                            <li><a href="cart"><i class="fa fa-user"></i> My Cart</a></li>
+                            <li><a href="addtocart"><i class="fa fa-user"></i> My Cart</a></li>
                              <%if (((String)request.getSession().getAttribute("name"))==null) { %>
                             <li><a href="login"><i class="fa fa-user"></i><span id="loginName"> Login</span></a></li>
                             <%} else {%>
@@ -92,7 +92,7 @@ page language="java" contentType="text/html; charset=UTF-8"
                 </div>
                 <div class="col-sm-6">
                     <div class="shopping-item">
-                        <a href="cart">Cart - <span class="cart-amunt">$0</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+                        <a href="addtocart">Cart - <span class="cart-amunt">$0</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
                     </div>
                 </div>
             </div>
@@ -114,7 +114,7 @@ page language="java" contentType="text/html; charset=UTF-8"
                     <ul class="nav navbar-nav">
                         <li><a href="index">Home</a></li>
                         <li class="active"><a href="shop">Shop</a></li>
-                        <li><a href="cart">Cart</a></li>
+                        <li><a href="addtocart">Cart</a></li>
                         <!-- <li><a href="checkout">Checkout</a></li> -->
                         <!-- <li><a href="#">Category</a></li>
                         <li><a href="#">Others</a></li>
@@ -157,7 +157,7 @@ page language="java" contentType="text/html; charset=UTF-8"
                         </div>  
                         
                         <div class="product-option-shop">
-                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href="/canvas/shop/?add-to-cart=70">Add to cart</a>
+                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href='addtocart/${book.id}'>Add to cart</a>
                         </div>                       
                     </div>
                     

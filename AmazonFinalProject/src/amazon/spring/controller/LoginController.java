@@ -36,7 +36,7 @@ public class LoginController {
 	
 				if (userDAO.login(login.getEmail(), login.getPass())) {
 					HttpSession session = request.getSession();
-					session.setMaxInactiveInterval(60);
+					session.setMaxInactiveInterval(120);
 					String firstName = userDAO.getFirstNameByEmail(login.getEmail());
 					session.setAttribute("name", firstName);
 					model.addAttribute(session);
