@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import amazon.dao.BookDAO;
+import amazon.dao.IBookDAO;
 import amazon.model.Book;
 import amazon.model.Search;
 
@@ -18,7 +19,7 @@ public class ShopController {
 	@RequestMapping(value="/shop", method = RequestMethod.GET)
 	public String cartCtrl(Model model) {
 		
-		BookDAO bDao = new BookDAO();
+		IBookDAO bDao = new BookDAO();
 		List<Book> books = bDao.getAllBooks();
 		model.addAttribute("books", books);
 		return "shop";

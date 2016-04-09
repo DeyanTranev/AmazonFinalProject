@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import amazon.dao.IUserDAO;
 import amazon.dao.UserDAO;
 import amazon.exceptions.UserException;
 import amazon.model.Address;
@@ -13,7 +14,7 @@ public class UserTest {
 
 	@Test
 	public void testAddUser() {
-		UserDAO uDAO = new UserDAO();
+		IUserDAO uDAO = new UserDAO();
 		Address address;
 		try {
 			address = new Address("Test41", 567, "Topolovor");

@@ -39,6 +39,7 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 		resolver.setPrefix("/WEB-INF/views/jsp/");
 		resolver.setSuffix(".jsp");
 		
+		
 		return resolver;
 	}
 	

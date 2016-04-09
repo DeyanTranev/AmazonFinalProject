@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 import amazon.model.Address;
 
-public class AddressDAO extends AbstractDAO {
+public class AddressDAO extends AbstractDAO implements IAddressDAO {
 	
 	private static final String ADD_ADDRESS_QUERY = "INSERT INTO addresses VALUES (null, ?, ?, ?)";
 	private static final String ADD_CITY = "INSERT INTO cities VALUES (null, ?)";
@@ -31,6 +31,10 @@ public class AddressDAO extends AbstractDAO {
 		return 0;
 	}
 
+	/* (non-Javadoc)
+	 * @see amazon.dao.IAddressDAO#addAddress(amazon.model.Address)
+	 */
+	@Override
 	public int addAddress(Address address) {
 		
 		int cityId = addCity(address.getCity());

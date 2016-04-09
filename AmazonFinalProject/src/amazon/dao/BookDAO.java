@@ -12,16 +12,21 @@ import amazon.exceptions.BookException;
 import amazon.model.Author;
 import amazon.model.Book;
 
-public class BookDAO extends AbstractDAO {
+public class BookDAO extends AbstractDAO implements IBookDAO {
 
+	private static final String GET_BOOK_BY_ID_QUERY = "SELECT * FROM books WHERE book_id=?";
 	private static final String SEARCH_BOOKS_BY_GENRE = "SELECT * FROM books b join genres g on (b.genre_id=g.genre_id) WHERE g.genre_name LIKE ?;";
 	private static final String SEARCH_BOOKS_BY_TITLE = "SELECT * FROM books WHERE book_title LIKE ?";
 	private static final String SEARCH_BOOKS_BY_AUTHOR = "SELECT * FROM  books b join authors a ON (a.author_id = b.author_id) WHERE concat(a.first_name,' ',a.last_name) LIKE ?;";
 	private static final String GET_ALL_BOOKS = "SELECT * FROM books";
 	private static final String INSERT_NEW_BOOK_QUERY = "INSERT INTO books values(null, ?, ?, ?, ?, ?, ?, ?);";
 
+	/* (non-Javadoc)
+	 * @see amazon.dao.IBookDAO#getAllBooks()
+	 */
+	@Override
 	public List<Book> getAllBooks() {
-		AuthorDAO adao = new AuthorDAO();
+		IAuthorDAO adao = new AuthorDAO();
 		Statement statement;
 
 		List<Book> result = new ArrayList<Book>();
@@ -39,8 +44,12 @@ public class BookDAO extends AbstractDAO {
 		return result;
 	}
 
+	/* (non-Javadoc)
+	 * @see amazon.dao.IBookDAO#addBook(amazon.model.Book)
+	 */
+	@Override
 	public void addBook(Book book) {
-		AuthorDAO adao = new AuthorDAO();
+		IAuthorDAO adao = new AuthorDAO();
 
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(INSERT_NEW_BOOK_QUERY);
@@ -68,12 +77,16 @@ public class BookDAO extends AbstractDAO {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see amazon.dao.IBookDAO#getGenreById(int)
+	 */
+	@Override
 	public String getGenreById(int id) {
 
 		String genre = "";
 
 		try {
-			PreparedStatement ps = getConnection().prepareStatement("SELECT genre_name FROM genres WHERE genre_id = ?");
+			PreparedStatement ps = getConnection().prepareStatement("SELECT genre_name FROM genres WHERE genre_id=?");
 
 			ps.setInt(1, id);
 
@@ -89,9 +102,13 @@ public class BookDAO extends AbstractDAO {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see amazon.dao.IBookDAO#bookBy(java.lang.String, java.lang.String)
+	 */
+	@Override
 	public List<Book> bookBy(String selection, String input) {
 		List<Book> books = new ArrayList<>();
-		AuthorDAO adao = new AuthorDAO();
+		IAuthorDAO adao = new AuthorDAO();
 		
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(getSearchParam(selection));
@@ -110,11 +127,15 @@ public class BookDAO extends AbstractDAO {
 		return books;
 	}
 	
+	/* (non-Javadoc)
+	 * @see amazon.dao.IBookDAO#getBookById(int)
+	 */
+	@Override
 	public Book getBookById(int id) {
 		Book book = null;
-		AuthorDAO adao = new AuthorDAO();
+		IAuthorDAO adao = new AuthorDAO();
 		try {
-			PreparedStatement ps = getConnection().prepareStatement("SELECT * FROM books WHERE book_id=?");
+			PreparedStatement ps = getConnection().prepareStatement(GET_BOOK_BY_ID_QUERY);
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			rs.next();
@@ -129,7 +150,25 @@ public class BookDAO extends AbstractDAO {
 		return book;
 		
 	}
+	public double getBookPriceById(int id) {
+		double price = 0.0;
+		try {
+			PreparedStatement ps = getConnection().prepareStatement("SELECT price FROM books WHERE book_id=?");
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			price = rs.getDouble(1);
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		return price;
+	}
 	
+	/* (non-Javadoc)
+	 * @see amazon.dao.IBookDAO#getSearchParam(java.lang.String)
+	 */
+	@Override
 	public String getSearchParam(String selection) {
 		
 		String select = "";

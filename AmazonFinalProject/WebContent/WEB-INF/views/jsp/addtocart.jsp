@@ -31,7 +31,10 @@
 	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
 <!-- Custom CSS -->
-<link rel="stylesheet" href="<c:url value="css/owl.carousel.css"/>">
+<link rel="stylesheet" href="css/owl.carousel.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="../css/owl.carousel.css">
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../css/responsive.css">
 
@@ -105,15 +108,17 @@
 				<div class="col-sm-6">
 					<div class="logo">
 						<h1>
-							<a href="index">e<span>Books</span></a>
+							<a href="/index">e<span>Books</span></a>
 						</h1>
 					</div>
 				</div>
 				<div class="col-sm-6">
 
 					<div class="shopping-item">
-						<a href="addtocart">Cart - <span class="cart-amunt">$0</span>
-							<i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+						<c:set var="total" value="${total}" />
+						<a href="addtocart">Cart - <span class="cart-amunt"><fmt:formatNumber
+															type="number" maxIntegerDigits="2" value="${total}" /></span>
+							<i class="fa fa-shopping-cart"></i> <span class="product-count">${cart.size()}</span></a>
 					</div>
 				</div>
 			</div>
@@ -136,7 +141,7 @@
 					<ul class="nav navbar-nav">
 						<li><a href="../index">Home</a></li>
 						<li><a href="../shop">Shop page</a></li>
-						<li class="active"><a href="../cart">Cart</a></li>
+						<li class="active"><a href="addtocart/0">Cart</a></li>
 						<!--  <li><a href="checkout">Checkout</a></li> -->
 						<!-- <li><a href="#">Category</a></li>
                         <li><a href="#">Others</a></li>
@@ -173,14 +178,21 @@
 						<c:forEach items="${cart}" var="book">
 							<div class="single-sidebar">
 								<h2 class="sidebar-title">Products</h2>
+								
 								<div class="thubmnail-recent">
 									<img src="../img/${book.img}.jpg" class="recent-thumb" alt="">
 									<h2>
 										<a href="single-product">${book.title}</a>
 									</h2>
+									
+									
 									<div class="product-sidebar-price">
 										<ins>${book.price}</ins>
 									</div>
+									<div >
+										<a href="../remove/${book.id}" class="tfbutton_remove">Remove</a>
+									</div>
+									
 								</div>
 							</div>
 						</c:forEach>
@@ -286,6 +298,9 @@
 											</tr>
 										</tbody>
 									</table>
+									<form:form commandName="orderForm" method="POST" class="form submit">
+										<button type="submit" value="Login" class="button">Submit Order </button>
+									</form:form>
 								</div>
 
 							</div>
@@ -390,6 +405,10 @@
 
 	<!-- jQuery easing -->
 	<script src="../js/jquery.easing.1.3.min.js"></script>
+	<!--Alt -->
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/jquery.sticky.js"></script>
+	<script src="js/jquery.easing.1.3.min.js"></script>
 
 	<!-- Main Script -->
 	<script src="../js/main.js"></script>

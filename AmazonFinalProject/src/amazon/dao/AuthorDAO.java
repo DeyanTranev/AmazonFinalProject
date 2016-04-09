@@ -12,10 +12,14 @@ import java.util.List;
 import amazon.exceptions.AuthorException;
 import amazon.model.Author;
 
-public class AuthorDAO extends AbstractDAO {
+public class AuthorDAO extends AbstractDAO implements IAuthorDAO {
 	
 	private static final String ADD_AUTHOR_QUERY = "INSERT into authors values(null, ?, ?);";
 
+	/* (non-Javadoc)
+	 * @see amazon.dao.IAuthorDAO#getAllAuthors()
+	 */
+	@Override
 	public List<Author> getAllAuthors() {
 		
 		Statement statement;
@@ -42,6 +46,10 @@ public class AuthorDAO extends AbstractDAO {
 	}
 	
 	
+	/* (non-Javadoc)
+	 * @see amazon.dao.IAuthorDAO#getAuthorId(java.lang.String)
+	 */
+	@Override
 	public int getAuthorId(String name) {
 		
 		String[] names = name.split(" "); 
@@ -63,6 +71,10 @@ public class AuthorDAO extends AbstractDAO {
 		
 	}
 	
+	/* (non-Javadoc)
+	 * @see amazon.dao.IAuthorDAO#getAuthorById(int)
+	 */
+	@Override
 	public Author getAuthorById(int id) throws AuthorException {
 		Author author=null;
 		try {
@@ -78,6 +90,10 @@ public class AuthorDAO extends AbstractDAO {
 		return author;
 	}
 	
+	/* (non-Javadoc)
+	 * @see amazon.dao.IAuthorDAO#addAuthor(amazon.model.Author)
+	 */
+	@Override
 	public int addAuthor(Author author) {
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(ADD_AUTHOR_QUERY, 

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import amazon.dao.BookDAO;
+import amazon.dao.IBookDAO;
 import amazon.model.Book;
 import amazon.model.Cart;
 
@@ -51,11 +52,11 @@ public class CartController {
 		} 
 		else {
 			try {
-				BookDAO bdao = new BookDAO();
+				IBookDAO bdao = new BookDAO();
 				Book book = bdao.getBookById(id);
 				ArrayList<Book> cart = ((ArrayList<Book>)session.getAttribute("cart"));
 				double total = ((Double)session.getAttribute("total"));
-				System.out.println(cart + "---------------------------");
+				//System.out.println(cart + "---------------------------");
 				cart.add(book);
 				total+=book.getPrice();
 				model.addAttribute("cart", cart);
@@ -63,17 +64,40 @@ public class CartController {
 				model.addAttribute("total", total);
 				session.setAttribute("total", total);
 				for (Book b : cart) {
-					System.out.println(book);
+					System.out.println(b);
 				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				model.addAttribute("error", "An error occurred! ");
+				e.printStackTrace();
 				return "addtocart";
 			}
 			return "addtocart";
 		}
 		
 		
+	}
+	
+	@RequestMapping(value="/remove/{book_id}", method = RequestMethod.GET)
+	public String removeFromCartCtrl(Model model, @PathVariable("book_id") Integer id, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		IBookDAO bdao= new BookDAO();
+		
+		ArrayList<Book> cart = ((ArrayList<Book>)session.getAttribute("cart"));
+		double total = ((Double)session.getAttribute("total"));
+		Book bookToRemove = bdao.getBookById(id);
+		cart.remove(bookToRemove);
+		
+		for (Book b : cart) {
+			System.out.println("---------------------------------------------------"+b);
+		}
+		total-=bdao.getBookPriceById(id);
+		model.addAttribute(cart);
+		session.setAttribute("cart", cart);
+		model.addAttribute("total", total);
+		session.setAttribute("total", total);
+		
+		return "addtocart";
 	}
 	
 	

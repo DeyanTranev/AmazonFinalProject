@@ -92,7 +92,7 @@ page language="java" contentType="text/html; charset=UTF-8"
                 </div>
                 <div class="col-sm-6">
                     <div class="shopping-item">
-                        <a href="addtocart">Cart - <span class="cart-amunt">$0</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+                        <a href="addtocart">Cart - <span class="cart-amunt">${total}</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">${cart.size()}</span></a>
                     </div>
                 </div>
             </div>

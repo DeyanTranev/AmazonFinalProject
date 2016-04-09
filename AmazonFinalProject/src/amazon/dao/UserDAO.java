@@ -11,11 +11,15 @@ import java.sql.Statement;
 import amazon.exceptions.UserException;
 import amazon.model.User;
 
-public class UserDAO extends AbstractDAO {
+public class UserDAO extends AbstractDAO implements IUserDAO {
 	
+	/* (non-Javadoc)
+	 * @see amazon.dao.IUserDAO#addUser(amazon.model.User)
+	 */
+	@Override
 	public void addUser(User user) {
 		
-		AddressDAO addrDao = new AddressDAO();
+		IAddressDAO addrDao = new AddressDAO();
 		int newAddressID = addrDao.addAddress(user.getAddress());
 		
 		try {
@@ -60,6 +64,10 @@ public class UserDAO extends AbstractDAO {
 		return salt;
 	}
 	
+	/* (non-Javadoc)
+	 * @see amazon.dao.IUserDAO#getFirstNameByEmail(java.lang.String)
+	 */
+	@Override
 	public String getFirstNameByEmail(String email) throws UserException  {
 		String uname = "";
 		try {
@@ -81,6 +89,10 @@ public class UserDAO extends AbstractDAO {
 		
 	}
 	
+	/* (non-Javadoc)
+	 * @see amazon.dao.IUserDAO#login(java.lang.String, java.lang.String)
+	 */
+	@Override
 	public boolean login(String userEmail, String password) throws UserException {
 		try {
 			
