@@ -18,6 +18,18 @@ public class User {
 	public User() {
 		
 	}
+	
+	
+
+	public User(String firstName, String lastName, String eMail, String password, Address address) throws UserException {
+		
+		setFirstName(firstName);
+		setLastName(lastName);
+		seteMail(eMail);
+		setPassword(password);
+		setAddress(address);
+	}
+
 
 
 	public User(String firstName, String lastName, String eMail, String password, String rePassword,
@@ -30,6 +42,7 @@ public class User {
 			setPassword(password);
 		}
 		else {
+			System.err.println("--------------------------------------- Invalid pass!!!!!!!!!");
 			throw new UserException("Invalid Mail or Password!");
 		}
 		setAddress(address);

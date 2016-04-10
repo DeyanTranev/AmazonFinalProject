@@ -3,6 +3,7 @@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="ISO-8859-1"%>
 	<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -58,23 +59,7 @@ page language="java" contentType="text/html; charset=UTF-8"
                 <div class="col-md-4">
                     <div class="header-right">
                         <ul class="list-unstyled list-inline">
-                            <!-- <li class="dropdown dropdown-small">
-                                <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">currency :</span><span class="value">USD </span><b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">USD</a></li>
-                                    <li><a href="#">INR</a></li>
-                                    <li><a href="#">GBP</a></li>
-                                </ul>
-                            </li> -->
-
-                            <!-- <li class="dropdown dropdown-small">
-                                <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">language :</span><span class="value">English </span><b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">English</a></li>
-                                    <li><a href="#">French</a></li>
-                                    <li><a href="#">German</a></li>
-                                </ul>
-                            </li> -->
+                           
                         </ul>
                     </div>
                 </div>
@@ -92,7 +77,8 @@ page language="java" contentType="text/html; charset=UTF-8"
                 </div>
                 <div class="col-sm-6">
                     <div class="shopping-item">
-                        <a href="addtocart">Cart - <span class="cart-amunt">${total}</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">${cart.size()}</span></a>
+                        <a href="addtocart">Cart - <span class="cart-amunt"><fmt:formatNumber
+															type="number" maxIntegerDigits="2" value="${total}" /></span> <i class="fa fa-shopping-cart"></i> <span class="product-count">${cart.size()}</span></a>
                     </div>
                 </div>
             </div>
@@ -115,10 +101,7 @@ page language="java" contentType="text/html; charset=UTF-8"
                         <li><a href="index">Home</a></li>
                         <li class="active"><a href="shop">Shop</a></li>
                         <li><a href="addtocart">Cart</a></li>
-                        <!-- <li><a href="checkout">Checkout</a></li> -->
-                        <!-- <li><a href="#">Category</a></li>
-                        <li><a href="#">Others</a></li>
-                        <li><a href="#">Contact</a></li> -->
+                       
                     </ul>
                 </div>  
             </div>
@@ -130,7 +113,7 @@ page language="java" contentType="text/html; charset=UTF-8"
             <div class="row">
                 <div class="col-md-12">
                     <div class="product-bit-title text-center">
-                        <h2>Shop</h2>
+                        <h2>Shop page</h2>
                     </div>
                 </div>
             </div>
@@ -138,39 +121,27 @@ page language="java" contentType="text/html; charset=UTF-8"
     </div>
     
     
-    <div class="single-product-area">
-        <div class="zigzag-bottom"></div>
+    <div class="maincontent-area">
         <div class="container">
+        
         <c:forEach items="${books}" var="book" >
-            <div class="row">
-                <div class="col-md-3 col-sm-6">
-                
-                
-                
-                    <div class="single-shop-product">
-                        <div class="product-upper">
-                            <img src="img/${book.img}.jpg" alt="${book.img}">
-                        </div>
-                        <h2><a href="">${book.title}</a></h2>
-                        <div class="product-carousel-price">
-                            <ins><p>price: ${book.price}</p></ins> 
-                        </div>  
-                        
-                        <div class="product-option-shop">
-                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href='addtocart/${book.id}'>Add to cart</a>
-                        </div>                       
-                    </div>
-                    
-                    
-                    
+        <div class="row books">
+            <div class="singel-product">
+                <div class="productImages">
+                    <img src="img/${book.img}.jpg" alt="${book.img}">
                 </div>
-                 
-  
+                 <h2 class="h2names"><a href="single-product-${book.id}">${book.title}</a></h2>
+                 <div class="product-carousel-price">
+                     <ins><p>price: ${book.price}</p></ins> 
+                 </div>  
+                 <div class="product-option-shop">
+                     <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="70" rel="nofollow" href='addtocart-${book.id}'>Add to cart</a>
+                 </div>                       
             </div>
-            </c:forEach>
-            
-            
-            <div class="row">
+             </div>  
+         </c:forEach>
+        </div>
+        <div class="row">
                 <div class="col-md-12">
                     <div class="product-pagination text-center">
                         <nav>
@@ -195,73 +166,16 @@ page language="java" contentType="text/html; charset=UTF-8"
                     </div>
                 </div>
             </div>
-        </div>
     </div>
 
 
-   <!--  <div class="footer-top-area"> 
-        <div class="zigzag-bottom"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 col-sm-6">
-                    <div class="footer-about-us">
-                        <h2>e<span>Books</span></h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sunt id doloribus vero quam laborum quas alias dolores blanditiis iusto consequatur, modi aliquid eveniet eligendi iure eaque ipsam iste, pariatur omnis sint! Suscipit, debitis, quisquam. Laborum commodi veritatis magni at?</p>
-                        <div class="footer-social">
-                            <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
-                            <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
-                            <a href="#" target="_blank"><i class="fa fa-youtube"></i></a>
-                            <a href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
-                            <a href="#" target="_blank"><i class="fa fa-pinterest"></i></a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-3 col-sm-6">
-                    <div class="footer-menu">
-                        <h2 class="footer-wid-title">User Navigation </h2>
-                        <ul>
-                            <li><a href="">My account</a></li>
-                            <li><a href="">Order history</a></li>
-                            <li><a href="">Wishlist</a></li>
-                            <li><a href="">Vendor contact</a></li>
-                            <li><a href="">Front page</a></li>
-                        </ul>                        
-                    </div>
-                </div>
-                
-                <div class="col-md-3 col-sm-6">
-                    <div class="footer-menu">
-                        <h2 class="footer-wid-title">Categories</h2>
-                        <ul>
-                            <li><a href="">Mobile Phone</a></li>
-                            <li><a href="">Home accesseries</a></li>
-                            <li><a href="">LED TV</a></li>
-                            <li><a href="">Computer</a></li>
-                            <li><a href="">Gadets</a></li>
-                        </ul>                        
-                    </div>
-                </div>
-                
-                <div class="col-md-3 col-sm-6">
-                    <div class="footer-newsletter">
-                        <h2 class="footer-wid-title">Newsletter</h2>
-                        <p>Sign up to our newsletter and get exclusive deals you wont find anywhere else straight to your inbox!</p>
-                        <div class="newsletter-form">
-                            <input type="email" placeholder="Type your email">
-                            <input type="submit" value="Subscribe">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
+  
     <div class="footer-bottom-area">
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
                     <div class="copyright">
-                        <p>&copy; 2015 eBooks. All Rights Reserved. Coded by Us <i class="fa fa-heart"></i> by <a href="http://wpexpand.com" target="_blank">WP Expand</a></p>
+                        <p>&copy; 2015 eBooks. All Rights Reserved. Coded by Us </p>
                     </div>
                 </div>
                 

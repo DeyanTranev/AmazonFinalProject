@@ -44,12 +44,12 @@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
                     <div class="user-menu">
                          <ul>
                             
-                            <li><a href="cart"><i class="fa fa-user"></i> My Cart</a></li>
+                            <li><a href="./addtocart"><i class="fa fa-user"></i> My Cart</a></li>
                              <%if (((String)request.getSession().getAttribute("name"))==null) { %>
-                            <li><a href="login"><i class="fa fa-user"></i><span id="loginName"> Login</span></a></li>
+                            <li><a href="./login"><i class="fa fa-user"></i><span id="loginName"> Login</span></a></li>
                             <%} else {%>
-                           <li><a href="login"><i class="fa fa-user"></i> <%=request.getSession().getAttribute("name") %></a></li>
-                           <li><a href="logout"><i class="fa fa-user"></i> Logout </a></li>
+                           <li><a href="./login"><i class="fa fa-user"></i> <%=request.getSession().getAttribute("name") %></a></li>
+                           <li><a href="./logout"><i class="fa fa-user"></i> Logout </a></li>
                            <%} %>
                             
                         </ul>
@@ -59,23 +59,7 @@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
                 <div class="col-md-4">
                     <div class="header-right">
                         <ul class="list-unstyled list-inline">
-                          <!--   <li class="dropdown dropdown-small">
-                                <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">currency :</span><span class="value">USD </span><b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">USD</a></li>
-                                    <li><a href="#">INR</a></li>
-                                    <li><a href="#">GBP</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="dropdown dropdown-small">
-                                <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">language :</span><span class="value">English </span><b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">English</a></li>
-                                    <li><a href="#">French</a></li>
-                                    <li><a href="#">German</a></li>
-                                </ul>
-                            </li> -->
+                          
                         </ul>
                     </div>
                 </div>
@@ -88,7 +72,7 @@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
             <div class="row">
                 <div class="col-sm-6">
                     <div class="logo">
-                        <h1><a href="index">e<span>Books</span></a></h1>
+                        <h1><a href="./index">e<span>Books</span></a></h1>
                     </div>
                 </div>
                 
@@ -116,7 +100,7 @@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
                         </form>
                     </div>
                     <div class="shopping-item">
-                        <a href="cart">Cart - <span class="cart-amunt">$0</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+                        <a href="./addtocart">Cart - <span class="cart-amunt">$0</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
                     </div>
                 </div>
             </div>
@@ -136,9 +120,9 @@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
                 </div> 
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="index">Home</a></li>
-                        <li><a href="shop">Shop page</a></li>
-                        <li><a href="cart">Cart</a></li>
+                        <li><a href="./index">Home</a></li>
+                        <li><a href="./shop">Shop page</a></li>
+                        <li><a href="./addtocart">Cart</a></li>
      <!--                    <li class="active"><a href="checkout">Checkout</a></li> -->
                         <!-- <li><a href="#">Category</a></li>
                         <li><a href="#">Others</a></li>

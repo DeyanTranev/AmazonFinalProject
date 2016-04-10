@@ -34,7 +34,7 @@ public class CartController {
 		}
 	}
 
-	@RequestMapping(value = "/addtocart/{book_id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/addtocart-{book_id}", method = RequestMethod.GET)
 	public String addToCartCtrl(Model model, @PathVariable("book_id") Integer id, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		if (session.getAttribute("name") == null) {
@@ -43,7 +43,7 @@ public class CartController {
 				double total = 0.0;
 				session.setAttribute("cart", cart);
 				session.setAttribute("total", total);
-				return "redirect:/login";
+				return "redirect:login";
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				model.addAttribute("error", "An error occurred");
@@ -54,6 +54,7 @@ public class CartController {
 			try {
 				IBookDAO bdao = new BookDAO();
 				Book book = bdao.getBookById(id);
+				@SuppressWarnings("unchecked")
 				ArrayList<Book> cart = ((ArrayList<Book>)session.getAttribute("cart"));
 				double total = ((Double)session.getAttribute("total"));
 				//System.out.println(cart + "---------------------------");
@@ -78,7 +79,7 @@ public class CartController {
 		
 	}
 	
-	@RequestMapping(value="/remove/{book_id}", method = RequestMethod.GET)
+	@RequestMapping(value="/remove-{book_id}", method = RequestMethod.GET)
 	public String removeFromCartCtrl(Model model, @PathVariable("book_id") Integer id, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		IBookDAO bdao= new BookDAO();

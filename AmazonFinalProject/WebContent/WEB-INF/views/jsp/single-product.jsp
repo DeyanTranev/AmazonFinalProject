@@ -4,6 +4,7 @@ page language="java" contentType="text/html; charset=UTF-8"
 	<%@
 taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -24,9 +25,9 @@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="../css/owl.carousel.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -44,12 +45,12 @@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
                     <div class="user-menu">
                         <ul>
                             
-                            <li><a href="../cart"><i class="fa fa-user"></i> My Cart</a></li>
+                            <li><a href="addtocart"><i class="fa fa-user"></i> My Cart</a></li>
                              <%if (((String)request.getSession().getAttribute("name"))==null) { %>
-                            <li><a href="../login"><i class="fa fa-user"></i><span id="loginName"> Login</span></a></li>
+                            <li><a href="login"><i class="fa fa-user"></i><span id="loginName"> Login</span></a></li>
                             <%} else {%>
-                           <li><a href="../login"><i class="fa fa-user"></i> <%=request.getSession().getAttribute("name") %></a></li>
-                           <li><a href="../logout"><i class="fa fa-user"></i> Logout </a></li>
+                           <li><a href="login"><i class="fa fa-user"></i> <%=request.getSession().getAttribute("name") %></a></li>
+                           <li><a href="logout"><i class="fa fa-user"></i> Logout </a></li>
                            <%} %>
                             
                         </ul>
@@ -72,12 +73,13 @@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
             <div class="row">
                 <div class="col-sm-6">
                  <div class="logo">
-                        <h1><a href="../index">e<span>Books</span></a></h1>
+                        <h1><a href="index">e<span>Books</span></a></h1>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="shopping-item">
-                        <a href="../cart">Cart - <span class="cart-amunt">$0</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+                        <a href="addtocart">Cart - <span class="cart-amunt"><fmt:formatNumber
+															type="number" maxIntegerDigits="2" value="${total}" /></span> <i class="fa fa-shopping-cart"></i> <span class="product-count">${cart.size()}</span></a>
                     </div>
                 </div>
             </div>
@@ -97,13 +99,10 @@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
                 </div> 
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="../index">Home</a></li>
-                        <li><a href="../shop">Shop page</a></li>
-                        <li><a href="../cart">Cart</a></li>
-                     <!--    <li><a href="checkout">Checkout</a></li> -->
-                        <!-- <li><a href="#">Category</a></li>
-                        <li><a href="#">Others</a></li>
-                        <li><a href="#">Contact</a></li> -->
+                        <li><a href="index">Home</a></li>
+                        <li><a href="shop">Shop page</a></li>
+                        <li><a href="addtocart">Cart</a></li>
+                  
                     </ul>
                 </div>  
             </div>
@@ -133,24 +132,20 @@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
                 <div class="col-md-8">
                     <div class="product-content-right">
                         <div class="product-breadcroumb">
-                            <a href="../index">Home</a>
-                            <a href="">${book.genre}</a>
-                            <a href="">${book.title}</a>
+                           
+                          <h2>  ${book.title} </h2>
+                             
+                            <h4> ${book.genre} </h4>
                         </div>
                         
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="product-images">
                                     <div class="product-main-img">
-                                        <img src="../img/${book.img}.jpg" alt="">
+                                        <img src="img/${book.img}.jpg" alt="">
                                     </div>
                                     
-                                    <!-- <div class="product-gallery">
-                                        <img src="img/product-thumb-1.jpg" alt="">
-                                        <img src="img/product-thumb-2.jpg" alt="">
-                                        <img src="img/product-thumb-3.jpg" alt="">
-                                        <img src="img/product-thumb-4.jpg" alt="">
-                                    </div> -->
+                                
                                 </div>
                             </div>
                             
@@ -161,10 +156,8 @@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
                                         <ins>${book.price}</ins> 
                                     </div>    
                                     
-                                    <form action="" class="cart">
-                                        <div class="quantity">
-                                            <input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
-                                        </div>
+                                    <form action="addtocart-${book.id }" class="cart" method="GET">
+                                       
                                         <button class="add_to_cart_button" type="submit">Add to cart</button>
                                     </form>   
                                     
@@ -174,8 +167,8 @@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
                                     
                                     <div role="tabpanel">
                                         <ul class="product-tab" role="tablist">
-                                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Description</a></li>
-                                            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Reviews</a></li>
+                                            <li role="presentation" class="active"><a href="index" aria-controls="home" role="tab" data-toggle="tab">Description</a></li>
+                                            <li role="presentation"><a href="#" aria-controls="profile" role="tab" data-toggle="tab">Reviews</a></li>
                                         </ul>
                                         <div class="tab-content">
                                             <div role="tabpanel" class="tab-pane fade in active" id="home">
@@ -210,13 +203,13 @@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
                                 </div>
                             </div>
                         </div>
-                                           
+                                      
                 </div>
             </div>
         </div>
     </div>
 
-
+  </div>   
 
     <div class="footer-bottom-area">
         <div class="container">
@@ -246,13 +239,13 @@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     
     <!-- jQuery sticky menu -->
-    <script src="../js/owl.carousel.min.js"></script>
-    <script src="../js/jquery.sticky.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.sticky.js"></script>
     
     <!-- jQuery easing -->
-    <script src="../js/jquery.easing.1.3.min.js"></script>
+    <script src="js/jquery.easing.1.3.min.js"></script>
     
     <!-- Main Script -->
-    <script src="../js/main.js"></script>
+    <script src="js/main.js"></script>
   </body>
 </html>

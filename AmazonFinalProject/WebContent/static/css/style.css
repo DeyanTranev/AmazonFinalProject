@@ -1091,9 +1091,9 @@ select {
 }
 .row.books{
 	float:left;
-	width:200px;
-	height:640px;
-	margin-bottom:10px;
+	width:250px;
+	height:480px;
+	margin-top:10px
 }
 .owl-item.active{
 width: 212px; 
@@ -1120,4 +1120,28 @@ height:500px;
 }
 .single-product-area.sp{
 	padding:80px 0 0;
+}
+.registerForm{
+	float:left;
+	height:310px;
+}
+.registerFormAdress{
+	height:310px;
+}
+.registerButton{
+	margin-top:50px;
+	margin-left:20px;
+}
+.profile{
+	float:left;
+	height:400px;
+	width:170px;
+}
+.textPro{
+	line-height: 38px;
+}
+.h2names{
+	font-size:26px;
+	width:170px;
+	height:100px;
 }

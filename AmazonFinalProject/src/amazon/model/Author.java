@@ -55,9 +55,9 @@ public class Author {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("id: " + getId() + "\n");
-		sb.append("first name: " + getFirstName() + "\n");
-		sb.append("last name: " + getLastName() + "\n");
+		
+		sb.append("first name: " + getFirstName());
+		sb.append("last name: " + getLastName());
 		return sb.toString();
 	}
 	

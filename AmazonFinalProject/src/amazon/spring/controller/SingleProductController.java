@@ -13,7 +13,7 @@ import amazon.model.Book;
 @Controller
 public class SingleProductController {
 
-	@RequestMapping(value="/single-product/{id}", method = RequestMethod.GET)
+	@RequestMapping(value="/single-product-{id}", method = RequestMethod.GET)
 	public String cartSingleProductCtrlId(Model model, @PathVariable("id") int id) {
 		
 		IBookDAO bDao = new BookDAO();

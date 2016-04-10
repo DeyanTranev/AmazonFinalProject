@@ -13,9 +13,20 @@ public class AuthorTest {
 	@Test
 	public void testGetAuthorById() throws AuthorException {
 		IAuthorDAO authDAO = new AuthorDAO();
-		
 		assertNotNull(authDAO.getAuthorById(1));
 		
+	}
+	
+	@Test
+	public void testGetAllAuthors() {
+		IAuthorDAO authDAO = new AuthorDAO();
+		assertNotNull(authDAO.getAllAuthors());
+	}
+	
+	@Test
+	public void testGetAuthorId() {
+		IAuthorDAO authDAO = new AuthorDAO();
+		assertNotNull(authDAO.getAuthorId("Stephen King"));
 	}
 
 }

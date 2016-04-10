@@ -1,6 +1,7 @@
 package amazon.spring.controller;
 
-
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,18 +16,26 @@ import amazon.model.Address;
 import amazon.model.User;
 import amazon.model.UserWrap;
 
+
 @Controller
-public class RegisterController {
-	@RequestMapping(value="/register", method=RequestMethod.GET)
-	public String getRegCtrl(Model viewModel) {
-		UserWrap userWrap = new UserWrap();
-		viewModel.addAttribute("userWrap", userWrap);
-		
-		return "register";
-	}
+public class ProfileController {
 	
-	@RequestMapping(value="/register", method=RequestMethod.POST)
-	public String registeruser(@ModelAttribute("userWrap") UserWrap userWrap) throws UserException  {
+	@RequestMapping(value="/profile", method=RequestMethod.GET)
+	public String profileCtrl(HttpServletRequest request, Model model) {
+		UserWrap userWrap = new UserWrap();
+		HttpSession session = request.getSession();
+		
+		IUserDAO udao = new UserDAO();
+		String email = "" + session.getAttribute("eMail");
+		User user = udao.getUserByEmail(email);
+		model.addAttribute("user", user);
+		model.addAttribute("userWrap", userWrap);
+		return "profile";
+	}
+
+	
+	@RequestMapping(value="/profile", method=RequestMethod.POST)
+	public String updateUser(@ModelAttribute("userWrap") UserWrap userWrap) throws UserException  {
 		IUserDAO udao = new UserDAO();
 		
 		User user = userWrap.getUser();

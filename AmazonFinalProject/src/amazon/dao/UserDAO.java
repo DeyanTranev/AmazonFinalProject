@@ -31,6 +31,7 @@ public class UserDAO extends AbstractDAO implements IUserDAO {
 			ps.setString(2, user.getLastName());
 			ps.setString(3, user.geteMail());
 			ps.setString(4, securePassword(user.getPassword(), salt));
+			//ps.setString(5, user.getRePassword());
 			ps.setInt(5, newAddressID);
 			ps.setString(6, salt);
 
@@ -64,34 +65,28 @@ public class UserDAO extends AbstractDAO implements IUserDAO {
 		return salt;
 	}
 	
-	/* (non-Javadoc)
-	 * @see amazon.dao.IUserDAO#getFirstNameByEmail(java.lang.String)
-	 */
+	
 	@Override
 	public String getFirstNameByEmail(String email) throws UserException  {
 		String uname = "";
 		try {
 			PreparedStatement ps = getConnection().prepareStatement("SELECT first_name from users WHERE e_mail = ?");
-			System.out.println("email:"+email);
 			ps.setString(1, email);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				uname=rs.getString("first_name");
 			}
-			System.out.println(uname);
 			return uname;
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			throw new UserException("Username not found", e);
 			
 		}
 		
 	}
 	
-	/* (non-Javadoc)
-	 * @see amazon.dao.IUserDAO#login(java.lang.String, java.lang.String)
-	 */
+
 	@Override
 	public boolean login(String userEmail, String password) throws UserException {
 		try {
@@ -114,6 +109,21 @@ public class UserDAO extends AbstractDAO implements IUserDAO {
 		
 	}
 	
+	public User getUserByEmail(String email) {
+		IAddressDAO adao = new AddressDAO();
+		User user = null;
+		try {
+			PreparedStatement ps = getConnection().prepareStatement("SELECT * FROM users WHERE e_mail = ?");
+			ps.setString(1, email);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			user = new User(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), adao.getAddressById(rs.getInt(6)));
+		} catch (SQLException | UserException e) {
+			
+			e.printStackTrace();
+		}
+		return user;
+	}
 	  private static String securePassword(String passwordToHash, String salt)
 	    {
 	        String generatedPassword = null;

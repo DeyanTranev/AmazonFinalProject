@@ -42,6 +42,7 @@ public class LoginController {
 					session.setMaxInactiveInterval(120);
 					String firstName = userDAO.getFirstNameByEmail(login.getEmail());
 					session.setAttribute("name", firstName);
+					session.setAttribute("eMail", login.getEmail());
 					ArrayList<Book> cart = new ArrayList<Book>();
 					session.setAttribute("cart", cart);
 					double total = 0.0;

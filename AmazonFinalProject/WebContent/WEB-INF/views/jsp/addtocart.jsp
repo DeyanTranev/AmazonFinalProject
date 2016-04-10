@@ -34,9 +34,7 @@
 <link rel="stylesheet" href="css/owl.carousel.css">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/responsive.css">
-<link rel="stylesheet" href="../css/owl.carousel.css">
-<link rel="stylesheet" href="../css/style.css">
-<link rel="stylesheet" href="../css/responsive.css">
+
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -54,7 +52,7 @@
 					<div class="user-menu">
 						<ul>
 
-							<li><a href="cart"><i class="fa fa-user"></i> My Cart</a></li>
+							<li><a href="addtocart"><i class="fa fa-user"></i> My Cart</a></li>
 							<%
 								if (((String) request.getSession().getAttribute("name")) == null) {
 							%>
@@ -64,7 +62,7 @@
 								} else {
 							%>
 							<li><a href="login"><i class="fa fa-user"></i> <%=request.getSession().getAttribute("name")%></a></li>
-							<li><a href="../logout"><i class="fa fa-user"></i>
+							<li><a href="logout"><i class="fa fa-user"></i>
 									Logout </a></li>
 							<%
 								}
@@ -77,23 +75,7 @@
 				<div class="col-md-4">
 					<div class="header-right">
 						<ul class="list-unstyled list-inline">
-							<!--  <li class="dropdown dropdown-small">
-                                <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">currency :</span><span class="value">USD </span><b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">USD</a></li>
-                                    <li><a href="#">INR</a></li>
-                                    <li><a href="#">GBP</a></li>
-                                </ul>
-                            </li> -->
-
-							<!--  <li class="dropdown dropdown-small">
-                                <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">language :</span><span class="value">English </span><b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">English</a></li>
-                                    <li><a href="#">French</a></li>
-                                    <li><a href="#">German</a></li>
-                                </ul>
-                            </li> -->
+							
 						</ul>
 					</div>
 				</div>
@@ -108,7 +90,7 @@
 				<div class="col-sm-6">
 					<div class="logo">
 						<h1>
-							<a href="/index">e<span>Books</span></a>
+							<a href="index">e<span>Books</span></a>
 						</h1>
 					</div>
 				</div>
@@ -139,13 +121,10 @@
 				</div>
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
-						<li><a href="../index">Home</a></li>
-						<li><a href="../shop">Shop page</a></li>
-						<li class="active"><a href="addtocart/0">Cart</a></li>
-						<!--  <li><a href="checkout">Checkout</a></li> -->
-						<!-- <li><a href="#">Category</a></li>
-                        <li><a href="#">Others</a></li>
-                        <li><a href="#">Contact</a></li> -->
+						<li><a href="index">Home</a></li>
+						<li><a href="shop">Shop page</a></li>
+						<li class="active"><a href="addtocart">Cart</a></li>
+						
 					</ul>
 				</div>
 			</div>
@@ -180,9 +159,9 @@
 								<h2 class="sidebar-title">Products</h2>
 								
 								<div class="thubmnail-recent">
-									<img src="../img/${book.img}.jpg" class="recent-thumb" alt="">
+									<img src="img/${book.img}.jpg" class="recent-thumb" alt="">
 									<h2>
-										<a href="single-product">${book.title}</a>
+										<a href="single-product-${book.id}">${book.title}</a>
 									</h2>
 									
 									
@@ -190,7 +169,7 @@
 										<ins>${book.price}</ins>
 									</div>
 									<div >
-										<a href="../remove/${book.id}" class="tfbutton_remove">Remove</a>
+										<a href="remove-${book.id}" class="tfbutton_remove">Remove</a>
 									</div>
 									
 								</div>
@@ -210,62 +189,9 @@
 				<div class="col-md-8">
 					<div class="product-content-right">
 						<div class="woocommerce">
-							<form method="post" action="#">
-								<!--      <table cellspacing="0" class="shop_table cart">
-                                    <thead>
-                                        <tr>
-                                            <th class="product-remove">&nbsp;</th>
-                                            <th class="product-thumbnail">&nbsp;</th>
-                                            <th class="product-name">Product</th>
-                                            <th class="product-price">Price</th>
-                                            <th class="product-quantity">Quantity</th>
-                                            <th class="product-subtotal">Total</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="cart_item">
-                                            <td class="product-remove">
-                                                <a title="Remove this item" class="remove" href="#">×</a> 
-                                            </td>
-
-                                            <td class="product-thumbnail">
-                                                <a href="single-product"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="../img/product-thumb-2.jpg"></a>
-                                            </td>
-
-                                            <td class="product-name">
-                                                <a href="single-product">Ship Your Idea</a> 
-                                            </td>
-
-                                            <td class="product-price">
-                                                <span class="amount">£15.00</span> 
-                                            </td>
-
-                                            <td class="product-quantity">
-                                                <div class="quantity buttons_added">
-                                                    <input type="button" class="minus" value="-">
-                                                    <input type="number" size="4" class="input-text qty text" title="Qty" value="1" min="0" step="1">
-                                                    <input type="button" class="plus" value="+">
-                                                </div>
-                                            </td>
-
-                                            <td class="product-subtotal">
-                                                <span class="amount">£15.00</span> 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="actions" colspan="6">
-                                                <div class="coupon">
-                                                    <label for="coupon_code">Coupon:</label>
-                                                    <input type="text" placeholder="Coupon code" value="" id="coupon_code" class="input-text" name="coupon_code">
-                                                    <input type="submit" value="Apply Coupon" name="apply_coupon" class="button">
-                                                </div>
-                                                <input type="submit" value="Update Cart" name="update_cart" class="button">
-                                                <input type="submit" value="Proceed to Checkout" name="proceed" class="checkout-button button alt wc-forward">
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table> -->
-							</form>
+							<!-- <form method="post" action="#">
+								
+							</form> -->
 
 							<div class="cart-collaterals">
 
@@ -298,7 +224,7 @@
 											</tr>
 										</tbody>
 									</table>
-									<form:form commandName="orderForm" method="POST" class="form submit">
+									<form:form commandName="orderForm" method="GET" class="form submit" action="order">
 										<button type="submit" value="Login" class="button">Submit Order </button>
 									</form:form>
 								</div>
@@ -312,65 +238,6 @@
 	</div>
 
 
-	<!--     <div class="footer-top-area">
-        <div class="zigzag-bottom"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 col-sm-6">
-                    <div class="footer-about-us">
-                        <h2>e<span>Books</span></h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sunt id doloribus vero quam laborum quas alias dolores blanditiis iusto consequatur, modi aliquid eveniet eligendi iure eaque ipsam iste, pariatur omnis sint! Suscipit, debitis, quisquam. Laborum commodi veritatis magni at?</p>
-                        <div class="footer-social">
-                            <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
-                            <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
-                            <a href="#" target="_blank"><i class="fa fa-youtube"></i></a>
-                            <a href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
-                            <a href="#" target="_blank"><i class="fa fa-pinterest"></i></a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-3 col-sm-6">
-                    <div class="footer-menu">
-                        <h2 class="footer-wid-title">User Navigation </h2>
-                        <ul>
-                            <li><a href="#">My account</a></li>
-                            <li><a href="#">Order history</a></li>
-                            <li><a href="#">Wishlist</a></li>
-                            <li><a href="#">Vendor contact</a></li>
-                            <li><a href="#">Front page</a></li>
-                        </ul>                        
-                    </div>
-                </div>
-                
-                <div class="col-md-3 col-sm-6">
-                    <div class="footer-menu">
-                        <h2 class="footer-wid-title">Categories</h2>
-                        <ul>
-                            <li><a href="#">Mobile Phone</a></li>
-                            <li><a href="#">Home accesseries</a></li>
-                            <li><a href="#">LED TV</a></li>
-                            <li><a href="#">Computer</a></li>
-                            <li><a href="#">Gadets</a></li>
-                        </ul>                        
-                    </div>
-                </div>
-                
-                <div class="col-md-3 col-sm-6">
-                    <div class="footer-newsletter">
-                        <h2 class="footer-wid-title">Newsletter</h2>
-                        <p>Sign up to our newsletter and get exclusive deals you wont find anywhere else straight to your inbox!</p>
-                        <div class="newsletter-form">
-                            <form action="#">
-                                <input type="email" placeholder="Type your email">
-                                <input type="submit" value="Subscribe">
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> <!-- End footer top area -->
 
 	<div class="footer-bottom-area">
 		<div class="container">
@@ -400,17 +267,17 @@
 		src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 	<!-- jQuery sticky menu -->
-	<script src="../js/owl.carousel.min.js"></script>
-	<script src="../js/jquery.sticky.js"></script>
+	
+	
 
 	<!-- jQuery easing -->
-	<script src="../js/jquery.easing.1.3.min.js"></script>
+	
 	<!--Alt -->
 	<script src="js/owl.carousel.min.js"></script>
 	<script src="js/jquery.sticky.js"></script>
 	<script src="js/jquery.easing.1.3.min.js"></script>
 
 	<!-- Main Script -->
-	<script src="../js/main.js"></script>
+	<script src="js/main.js"></script>
 </body>
 </html>

@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import amazon.exceptions.UserException;
 import amazon.model.Address;
 
 public class AddressDAO extends AbstractDAO implements IAddressDAO {
@@ -57,6 +58,37 @@ public class AddressDAO extends AbstractDAO implements IAddressDAO {
 			e.printStackTrace();
 		}
 		return 0;
+	}
+	
+	public Address getAddressById(int id) {
+		Address address = null;
+		
+		try {
+			PreparedStatement ps = getConnection().prepareStatement("SELECT * FROM addresses WHERE address_id = ?");
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			address = new Address(rs.getString(2), rs.getInt(3), getCityNameById(rs.getInt(4)));
+		} catch (SQLException | UserException e) {
+			
+			e.printStackTrace();
+		}
+		return address;
+	}
+	
+	private String getCityNameById(int id) {
+		String cityName = "";
+		try {
+			PreparedStatement ps = getConnection().prepareStatement("SELECT city_name FROM cities WHERE city_id = ?");
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			cityName = rs.getString("city_name");
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		return cityName;
 	}
 	
 }

@@ -100,28 +100,45 @@ page language="java" contentType="text/html; charset=UTF-8"
         </div>
     </div> <!-- End main menu area -->
     <div id="login-form">
-        <form:form commandName="loginForm" method="POST" class="form" >
-		<!-- Handle errors -->
-	<!--  	<form:errors path="*" cssClass="errorblock" element="div"/> -->
-		
-		<!-- Input for name of the product with css class for errors. -->
-		<label for="textinput1">Enter email:</label><br>
-		<form:input type = "email" placeholder="E-mail" path="email" cssErrorClass="error" id="userEmail"/><br>
-		<form:errors path="email" cssClass="error" />
-		<br>
-		
-	 	<label for="textinput2">Enter pass:</label><br>
-		<form:input type = "password" placeholder="Password" path="pass" cssErrorClass="error" /><br>
-		<form:errors path="pass" cssClass="error" />
-		 <br>
-		<button type="submit" value="Login" class="button" id="loginButton"> login </button><br>
-
-		<p>Don't have a registration?
-        <a href="register"> register here</a></p>
-        <c:if test="${error != null }">
-     <p style="color:red"> ${error}</p>
-    </c:if>
-	   </form:form> 
+		<div class="form profile textPro">
+			first name: <br/>
+			last name: <br/>
+			e-mail:<br/>
+			new password:<br/>
+			old password:<br/>
+			repeat old password:<br/>
+			street:<br/>
+			number:<br/>
+			city:
+		</div>
+		<div class="form profile textPro">
+			${user.firstName}<br/>
+			${user.lastName}<br/>
+			${user.eMail}<br/>
+			<br/>
+			<br/>
+			<br/>
+			${user.address.street}<br/>
+			${user.address.number}<br/>
+			${user.address.city}
+		</div>
+		<div class="form input">
+	         <form:form  method = "post" class="form" commandName="userWrap">
+			<form:input type="text" placeholder="First Name" path="user.firstName"/> <br>
+			<form:input type="text" placeholder="Last Name" path="user.lastName"/> <br>
+			<form:input type="email" placeholder="Email" path="user.eMail"/> <br>
+			<form:input type="password" placeholder="New Password" path="user.password"/> <br>
+			<form:input type="password" placeholder="Re-New Password" path="user.rePassword"/> <br> 
+			<form:input type="password" placeholder="Old Password" path="user.rePassword"/> <br> 
+			<form:input type="text" placeholder="Street" path="adress.street"/> <br>
+			<form:input type="text" placeholder="number" path="adress.number"/> <br>
+			<form:input type="text" placeholder="City" path="adress.city"/> <br>
+			<div>
+			<button type="submit" value="Login" class="button registerButton"> Save Changes</button>
+			<a href="redirect:index" >back</a>
+			</div>
+			</form:form>
+		</div>
     </div>
     <div class="footer-bottom-area">
         <div class="container">
